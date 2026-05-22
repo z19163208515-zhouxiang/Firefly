@@ -44,7 +44,6 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			"assets/images/DesktopWallpaper/艾伦.jpg",
 			"assets/images/DesktopWallpaper/a.jpg",
 			"assets/images/DesktopWallpaper/b.jpg",
-			"assets/images/DesktopWallpaper/d.jpg",
 			"assets/images/DesktopWallpaper/赛琳娜.png"
 	
 		],

@@ -39,8 +39,7 @@ export const commentConfig: CommentConfig = {
 		login: "force",
 		// 是否启用文章访问量统计功能
 		visitorCount: true,
-	},
-
+	},  
 	// artalk评论系统配置
 	artalk: {
 		// artalk后端程序 API 地址
