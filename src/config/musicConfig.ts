@@ -20,7 +20,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	playMode: "list",
 
 	// 是否显启用歌词
-	showLyrics: true,
+	showLyrics: false,
 
 	// Meting API 配置
 	meting: {
@@ -53,6 +53,41 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Call You Name",
 				artist: "澤野弘之",
 				url: "/assets/music/cyn.mp3",
+				cover: "/assets/music/cover/cync.webp",
+				lrc: "",
+			},
+			{
+				name: "13の冬",
+				artist: "石川由依",
+				url: "/assets/music/13.mp3",
+				cover: "/assets/music/cover/cync.webp",
+				lrc: "",
+			},
+			{
+				name: "恶魔の子",
+				artist: "ヒグチアイ",
+				url: "/assets/music/恶魔之子.mp3",
+				cover: "/assets/music/cover/cync.webp",
+				lrc: "",
+			},
+			{
+				name: "我的战争",
+				artist: "神圣放逐乐队",
+				url: "/assets/music/我的战争.mp3",
+				cover: "/assets/music/cover/cync.webp",
+				lrc: "",
+			},
+			{
+				name: "Counter Attack",
+				artist: "ヒグ",
+				url: "/assets/music/co.mp3",
+				cover: "/assets/music/cover/cync.webp",
+				lrc: "",
+			},
+			{
+				name: "Call Of Slience",
+				artist: "泽野弘之",
+				url: "/assets/music/cof.mp3",
 				cover: "/assets/music/cover/cync.webp",
 				lrc: "",
 			},

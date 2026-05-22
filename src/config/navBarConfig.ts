@@ -29,18 +29,18 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 	}
 
 	// 我的及其子菜单
-	// links.push({
-	// 	name: "我的",
-	// 	url: "/my/",
-	// 	icon: "material-symbols:person",
-	// 	children: [
-	// 		// 根据配置决定是否添加相册，在siteConfig关闭pages.gallery时导航栏不显示相册
-	// 		...(siteConfig.pages.gallery ? [LinkPreset.Gallery] : []),
+	links.push({
+		name: "我的",
+		url: "/my/",
+		icon: "material-symbols:person",
+		children: [
+			// 根据配置决定是否添加相册，在siteConfig关闭pages.gallery时导航栏不显示相册
+			...(siteConfig.pages.gallery ? [LinkPreset.Gallery] : []),
 
-	// 		// 根据配置决定是否添加番组计划，在siteConfig关闭pages.bangumi时导航栏不显示番组计划
-	// 		...(siteConfig.pages.bangumi ? [LinkPreset.Bangumi] : []),
-	// 	],
-	// });
+			// 根据配置决定是否添加番组计划，在siteConfig关闭pages.bangumi时导航栏不显示番组计划
+			...(siteConfig.pages.bangumi ? [LinkPreset.Bangumi] : []),
+		],
+	});
 
 	// 关于及其子菜单
 	links.push({
@@ -75,6 +75,13 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 				url: "https://github.com/",
 				external: true,
 				icon: "fa7-brands:gitee",
+			},
+			{
+
+			name: "Cloud",
+			url: "https://dash.cloudflare.com/83c8e991b99f2bf256955a66f57a313c/home/overview",
+			external: true,
+			icon: "fa7-brands:gitee",
 			},
 		],
 	});

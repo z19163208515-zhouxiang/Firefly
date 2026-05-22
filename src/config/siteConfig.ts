@@ -7,7 +7,7 @@ const SITE_LANG = "zh_CN";
 
 export const siteConfig: SiteConfig = {
 	// 站点标题
-	title: "周の翔",
+	title: "周のBlog",
 
 	// 站点副标题
 	subtitle: "周の個人Blog",
@@ -26,7 +26,7 @@ export const siteConfig: SiteConfig = {
 		"Live",
 		"Free",
 		"Save",
-		"技术博客",
+		"Share",
 		"静态博客",
 	],
 
@@ -61,7 +61,7 @@ export const siteConfig: SiteConfig = {
 			// 可选，指定主题 'light' | 'dark'
 			// theme: "light",
 			// 可选，图标大小
-			sizes: "26x26",
+			sizes: "26x32",
 		},
 	],
 
@@ -75,11 +75,11 @@ export const siteConfig: SiteConfig = {
 		// 4. 网络图片: { type: "url", value: "https://example.com/logo.png", alt: "Logo" }
 		logo: {
 			type: "image",
-			value: "assets/images/Logo.jpeg",
+			value: "assets/images/logo.jpg",
 			alt: "",
 		},
 		// 导航栏标题
-		title: "𝒵ℋ𝒪𝒰𝒳ℬ𝓁𝑜𝑔",
+		title: "𝑧ℎ𝑜𝑢𝑥𝑖𝑎𝑛𝑔",
 		// 全宽导航栏，导航栏是否占满屏幕宽度
 		widthFull: false,
 		// 导航菜单对齐方式，left：左对齐，center：居中
@@ -91,7 +91,7 @@ export const siteConfig: SiteConfig = {
 	},
 
 	// 站点开始日期，用于统计运行天数
-	siteStartDate: "2026-5-21",
+	siteStartDate: "2026-5-22",
 
 	// 站点时区（IANA 时区字符串），用于格式化bangumi、rss里的构建日期时间等等..
 	// 示例："Asia/Shanghai", "UTC", 如果为空，则按照构建服务器的时区进行时区转换
@@ -118,7 +118,7 @@ export const siteConfig: SiteConfig = {
 	// bangumi配置
 	bangumi: {
 		// Bangumi用户ID
-		userId: "#",
+		userId: "z19163208515",
 		// 条目类型排序，数组中的类型将按顺序优先展示
 		// 可选值: "anime" | "book" | "music" | "game" | "real" (暂不支持"real"类型)
 		// 未列出的类型将按默认顺序排在后面
@@ -135,7 +135,7 @@ export const siteConfig: SiteConfig = {
 		// 留言板页面开关，需要配置评论系统
 		guestbook: true,
 		// 番组计划页面开关，含追番、游戏、书籍和音乐，dev调试时只获取一页数据，build才会获取全部数据
-		bangumi: false,
+		bangumi: true,
 		// 相册页面开关
 		gallery: false,
 	},

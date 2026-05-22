@@ -41,13 +41,21 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 		// 桌面背景图片（支持单张或多张随机）
 		// desktop: "assets/images/DesktopWallpaper/d1.avif",
 		desktop: [
-			"assets/images/DesktopWallpaper/艾伦.jpg"
+			"assets/images/DesktopWallpaper/艾伦.jpg",
+			"assets/images/DesktopWallpaper/a.jpg",
+			"assets/images/DesktopWallpaper/b.jpg",
+			"assets/images/DesktopWallpaper/d.jpg",
+			"assets/images/DesktopWallpaper/赛琳娜.png"
 	
 		],
 		// 移动背景图片（支持单张或多张随机）
 		// mobile: "assets/images/MobileWallpaper/m1.avif",
 		mobile: [
-			"assets/images/DesktopWallpaper/艾伦.jpg"
+			"assets/images/MobileWallpaper/1.jpg",
+			"assets/images/MobileWallpaper/2.jpg",
+			"assets/images/MobileWallpaper/3.jpg",
+			"assets/images/MobileWallpaper/4.jpg",
+			"assets/images/MobileWallpaper/5.jpg",
 		],
 	},
 	// 横幅壁纸和全屏壁纸共享配置
@@ -61,28 +69,29 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			// 是否允许用户通过控制面板切换横幅标题显示
 			switchable: true,
 			// 主页横幅主标题
-			title: "𝒞𝒶𝓁𝓁 𝒪𝒻 𝒮𝒾𝓁𝑒𝓃𝒸𝑒",
+			title: "𝓟𝓮𝓻𝓼𝓸𝓷𝓪𝓵 𝓫𝓵𝓸𝓰",
 			// 主页横幅主标题字体大小
 			titleSize: "3.8rem",
 			// 主页横幅副标题
 			subtitle: [
-				"世界は残酷だ それでも君を愛すよ",
-				"なにを犠牲にしても",
-				"それでも君を守るよ",
+				"𝑻𝒉𝒆 𝒘𝒐𝒓𝒍𝒅 𝒊𝒔 𝒔𝒐 𝒄𝒓𝒖𝒆𝒍",
+				"𝒃𝒖𝒕 𝑰 𝒔𝒕𝒊𝒍𝒍 𝒍𝒐𝒗𝒆 𝒚𝒐𝒖,",
+				"𝒆𝒗𝒆𝒏 𝒊𝒇 𝑰 𝒈𝒊𝒗𝒆 𝒆𝒗𝒆𝒓𝒚𝒕𝒉𝒊𝒏𝒈",
+				"𝑰 𝒘𝒊𝒍𝒍 𝒑𝒓𝒐𝒕𝒆𝒄𝒕 𝒚𝒐𝒖",
 			],
 			// 主页横幅副标题字体大小
-			subtitleSize: "1.5rem",
+			subtitleSize: "3rem",
 			typewriter: {
 				// 是否启用打字机效果
 				// 打字机开启 → 循环显示所有副标题
 				// 打字机关闭 → 每次刷新随机显示一条副标题
 				enable: true,
 				// 打字速度（毫秒）
-				speed: 150,
+				speed: 100,
 				// 删除速度（毫秒）
-				deleteSpeed: 100,
+				deleteSpeed: 70,
 				// 完全显示后的暂停时间（毫秒）
-				pauseTime: 2000,
+				pauseTime: 800,
 			},
 		},
 		// 导航栏配置
