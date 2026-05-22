@@ -72,7 +72,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			// 主页横幅副标题
 			subtitle: [
 				"𝑻𝒉𝒆 𝒘𝒐𝒓𝒍𝒅 𝒊𝒔 𝒔𝒐 𝒄𝒓𝒖𝒆𝒍",
-				"𝒃𝒖𝒕 𝑰 𝒔𝒕𝒊𝒍𝒍 𝒍𝒐𝒗𝒆 𝒚𝒐𝒖,",
+				"𝒃𝒖𝒕 𝑰 𝒔𝒕𝒊𝒍𝒍 𝒍𝒐𝒗𝒆 𝒚𝒐𝒖",
 				"𝒆𝒗𝒆𝒏 𝒊𝒇 𝑰 𝒈𝒊𝒗𝒆 𝒆𝒗𝒆𝒓𝒚𝒕𝒉𝒊𝒏𝒈",
 				"𝑰 𝒘𝒊𝒍𝒍 𝒑𝒓𝒐𝒕𝒆𝒄𝒕 𝒚𝒐𝒖",
 			],
