@@ -4,6 +4,7 @@ published: 2026-05-22
 description: Waline 评论用户、评论、点赞、批量管理 SQL 语句合集
 tags: [SQL,数据库]
 category: 博客工具
+image: "api"
 draft: false
 toc: true
 mathjax: false
