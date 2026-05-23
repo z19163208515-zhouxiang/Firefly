@@ -387,7 +387,7 @@ def reg_stu(name, age, gender, city):
     print(f"注册成功,姓名{name},年龄{age},性别{gender},城市{city}")
     return {"name": name, "age": age, "gender": gender, "city": city}
 
-stu = reg_stu("周翔", 19, "男", "山东")   # 位置传参
+stu = reg_stu("ZX", 19, "男", "山东")   # 位置传参
 print(stu)
 ```
 
@@ -401,7 +401,7 @@ def reg_stu(name, age, gender, city):
     print(f"注册成功,姓名{name},年龄{age},性别{gender},城市{city}")
     return {"name": name, "age": age, "gender": gender, "city": city}
 
-stu = reg_stu(name="周翔", age="19", gender="男", city="山东")   # 关键字传参
+stu = reg_stu(name="ZX", age="19", gender="男", city="山东")   # 关键字传参
 print(stu)
 ```
 
@@ -415,7 +415,7 @@ def reg_stu(name, age, gender, city):
 如果位置参数和关键字参数混用，关键字参数必须在位置参数之后
 关键字参数之间没有顺序要求
 """
-stu = reg_stu("周翔", 19, gender="男", city="山东")
+stu = reg_stu("ZX", 19, gender="男", city="山东")
 print(stu)
 ```
 
@@ -440,17 +440,17 @@ def reg_stu(name, age, gender, city="北京"):
     print(f"姓名{name},年龄{age},性别{gender},城市{city}")
     return {"name": name, "age": age, "gender": gender, "city": city}
 
-stu = reg_stu("周翔", 18, "男")
+stu = reg_stu("ZX", 18, "男")
 
 # 函数调用时，为默认参数传递值，则会修改默认的参数值
-stu1 = reg_stu("周翔", 19, "男", "深圳")
+stu1 = reg_stu("ZX", 19, "男", "深圳")
 ```
 
 ```python
 def res_stu(name, age, gender="未知", city="山东"):
     return {"name": name, "age": age, "gender": gender, "city": city}
 
-info = res_stu("周翔", 19, city="北京")
+info = res_stu("ZX", 19, city="北京")
 print(info)
 ```
 
