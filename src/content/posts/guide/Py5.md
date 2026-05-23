@@ -2,7 +2,7 @@
 title: 核心语法-模块
 published: 2026-05-22
 description: Python模块
-tags: [Python模块]
+tags: [Python模块,学习]
 category: Python
 image: "api"
 draft: false
@@ -11,185 +11,81 @@ mathjax: false
 comments: true
 ---
 
-# Python 模块与包（Module & Package）笔记
+# Python 模块与包完整笔记
+
+## 介绍
+
+Python模块(module)：一个`.py`文件就是一个模块。模块是Python程序的基本组成单位，在模块中可以定义变量、函数、类以及可执行的代码。
+
+- 提高代码复用性
+- 降低开发门槛
 
 ---
 
-# 模块（Module）
+## 导入模块
 
-Python 模块（module）本质上就是一个 `.py` 文件。
+在使用模块中提供的功能之前，必须得先导入，再使用。
 
-模块是 Python 程序的基本组成单位，在模块中可以定义：
+导入模块的语句，一般放在Python文件开头。
 
-* 变量
-* 函数
-* 类
-* 可执行代码
-
-作用：
-
-* 提高代码复用性
-* 降低开发门槛
-* 方便项目维护
-
-人类把几十万行代码拆成模块。否则一个文件从盘古开天写到宇宙热寂，连自己都看不懂。代码也会开始报复社会。
-
----
-
-# 导入模块
-
-在使用模块中的功能之前，必须先导入模块。
-
-导入语句一般写在 Python 文件开头。
-
----
-
-# 导入形式
-
-| 导入形式                      | 代码样例                                 | 调用方式      | 实际调用演示                   |
-| ------------------------- | ------------------------------------ | --------- | ------------------------ |
-| import 模块名                | `import random`                      | `模块名.功能名` | `random.randint(10,100)` |
-| import 模块名 as 别名          | `import random as rd`                | `别名.功能名`  | `rd.randint(10,100)`     |
-| from 模块名 import 功能名       | `from random import randint`         | `功能名`     | `randint(10,100)`        |
-| from 模块名 import 功能名 as 别名 | `from random import randint as rint` | `别名`      | `rint(10,100)`           |
-| from 模块名 import *         | `from random import *`               | `功能名`     | `randint(10,100)`        |
-
----
-
-# 导入整个模块
-
-调用方式：
+| 导入形式 | 代码样例 | 调用方式 | 实际调用演示 |
+|----------|----------|----------|--------------|
+| `import 模块名` | `import random, os` | `模块名.功能名` | `random.randint(10,100)` |
+| `import 模块名 as 别名` | `import random as rd` | `别名.功能名` | `rd.randint(10,100)` |
+| `from 模块名 import 功能名` | `from random import randint, choice` | `功能名` | `randint(10,100)` |
+| `from 模块名 import 功能名 as 别名` | `from random import randint as rint` | `别名` | `rint(10,100)` |
+| `from 模块名 import *` | `from random import *` | `功能名` | `randint(10,100)` |
 
 ```python
-模块名.功能名
-```
-
-示例：
-
-```python
+# 导入整个模块 -> 调用方式: 模块名.功能名 / 别名.功能名
 import random
-
 for i in range(100):
-    print(random.randint(1,10))
-```
+    print(random.randint(1, 10))
 
----
-
-# 导入模块并起别名
-
-作用：
-
-* 简化代码
-* 防止模块名太长
-
-示例：
-
-```python
 import random as rd
-
 for i in range(5):
-    print(rd.randint(1,100))
-```
+    print(rd.randint(1, 100))
 
----
-
-# 导入模块中的指定功能
-
-调用方式：
-
-```python
-功能名()
-```
-
-示例：
-
-```python
+# 导入模块的功能 from... import... -> 调用方式: 功能名 / 别名
 from random import randint
-
 for i in range(12):
-    print(randint(1,1000))
-```
+    print(randint(1, 1000))
 
----
-
-# 导入功能并起别名
-
-示例：
-
-```python
 from random import randint as r
-
 for i in range(12):
-    print(r(1,10000))
-```
+    print(r(1, 10000))
 
----
-
-# 导入模块中的所有功能
-
-```python
+# 导入模块中的所有功能 -> 调用方式: 功能名
 from random import *
-
 for i in range(12):
-    print(randint(1,1000))
+    print(randint(1, 1000))
 ```
-
-注意：
-
-```python
-from xxx import *
-```
-
-虽然方便，但实际开发中不推荐大量使用。
-
-因为：
-
-* 不知道功能来自哪个模块
-* 容易发生重名冲突
-* 代码可读性差
-
-程序员最爱制造混乱，然后再发明“代码规范”去修补混乱。文明发展史一直如此。
 
 ---
 
-# 自定义模块
+## 自定义模块
 
-复杂项目中，会把代码拆分成多个模块。
+当开发一些复杂的项目，为了让项目结构更加清晰、更便于项目的维护管理及代码的复用，可能会把一个项目拆分为若干个模块。
 
-每一个 `.py` 文件都可以作为一个模块。
+每一个python文件都可以作为一个模块，模块的名字就是文件的名字（建议使用python标识符定义，规范命名）。
 
-模块名就是文件名。
-
-建议：
-
-* 使用 Python 标识符命名
-* 不要使用中文、空格、特殊字符
-
----
-
-# my_fun.py 文件（被导入模块）
+### my_fun.py文件（要被main.py导入的模块）
 
 ```python
 """
-__all__ 是一个模块级别的特殊变量，
-用于指定 from 模块名 import * 时会导入哪些功能
-
-__all__ 控制的是：
-from ... import * 时要导入的功能
-
-不会影响：
-from ... import 功能名
+__all__是一个模块级别的特殊变量，用于指定 from 模块名 import * 时会导入哪些功能（*适配了哪些功能）
+__all__控制的是 from...import * 时，要导入的功能
+并不会影响直接导入具体的功能（如 from...import 功能）
 """
-
 __all__ = ["log1", "log3", "PI"]
 
-# 常量（不会变化的量）
+# 常量（不会发生变化的量，常量的名称为全部大写）
 PI = 3.14
 NAME = "周翔"
 
 # 函数
 def log1():
-    print("-" * 30)
+    print("-" * 30)   # - 重复输出30次
 
 def log2():
     print("-" * 30)
@@ -199,84 +95,36 @@ def log3():
 
 def log4():
     print("/" * 30)
-```
 
----
+"""
+测试函数
+在main.py导入模块后，相当于把my_fun的代码复制到了main.py前面，会执行log1()
 
-# `__name__` 内置变量
+解决方法（内置变量__name__）
+__name__: Python中的内置变量（无需定义，直接使用）
+表示当前模块的名字
 
-## 问题
+1. 直接运行当前模块，__name__的值为 __main__
+2. 当该模块被导入时，__name__的值就是模块的名称（my_fun）
 
-如果模块中直接写测试代码：
+# 在my_fun.py运行值为 __main__
+# 当把my_fun模块导入main.py文件中，运行后，值为 my_fun（模块名称）
+# print(__name__)
+"""
 
-```python
-log1()
-```
-
-当别的文件导入这个模块时，也会执行。
-
-相当于：
-
-```python
-import my_fun
-```
-
-会把 `my_fun.py` 中代码全部执行一遍。
-
-于是莫名其妙打印东西。像深夜自动播放广告的网页。
-
----
-
-# 解决方法
-
-使用：
-
-```python
-if __name__ == "__main__":
-```
-
----
-
-# `__name__` 的含义
-
-Python 内置变量，无需定义。
-
-表示当前模块名字。
-
-规则：
-
-| 场景       | **name** 的值  |
-| -------- | ------------ |
-| 直接运行当前文件 | `"__main__"` |
-| 当前文件被导入  | 模块名          |
-
----
-
-# 示例
-
-```python
+# 执行当前文件，则会执行如下代码；如果当前模块被导入，如下代码不执行
 if __name__ == "__main__":
     log1()
 ```
 
-含义：
-
-* 当前文件自己运行 → 执行
-* 被别人导入 → 不执行
-
----
-
-# main.py 文件
-
-与 `my_fun.py` 在同一个目录。
-
----
-
-# 导入整个模块
+### main.py文件（和my_fun同属一个文件夹内）
 
 ```python
-import my_fun
+# 导入自定义模块
+# import my_fun
 
+# 使用模块的功能
+"""
 print(my_fun.PI)
 print(my_fun.NAME)
 
@@ -284,224 +132,95 @@ my_fun.log1()
 my_fun.log2()
 my_fun.log3()
 my_fun.log4()
-```
+"""
 
----
+# 导入模块中的功能
+# from my_fun import log1, log3, PI, NAME
 
-# 导入指定功能
+# 使用模块中的功能
+# print(PI)
+# print(NAME)
+# log1()
+# log3()
 
-```python
-from my_fun import log1, log3, PI, NAME
-
+# 导入my_fun.py模块中的所有功能
+from my_fun import *   # my_fun.py中的__all__ = []指定了导入的功能
 print(PI)
-print(NAME)
-
 log1()
 log3()
 ```
 
 ---
 
-# 导入所有功能
+## 包(package)
 
-```python
-from my_fun import *
+**包**：本质就是一个文件夹，该文件夹中可以包含若干个python模块（.py文件），文件夹下还包含了一个`__init__.py`文件。
 
-print(PI)
+**作用**：模块文件较多时，用来管理多个模块（包本质也是一个模块）。
 
-log1()
-log3()
-```
+- 在文件夹下创建`__init__.py`文件创建包
+- 或直接在创建文件夹时创建包
 
-因为：
-
-```python
-__all__ = ["log1","log3","PI"]
-```
-
-所以：
-
-* `log2`
-* `log4`
-* `NAME`
-
-不会被 `*` 导入。
-
----
-
-# 包（Package）
-
-包（package）本质上是一个文件夹。
-
-文件夹中：
-
-* 可以包含多个模块（`.py` 文件）
-* 必须包含一个 `__init__.py`
-
-结构示例：
-
-```text
-utils/
-│
-├── __init__.py
-├── my_fun.py
-└── my_var.py
-```
-
----
-
-# 包的作用
-
-当模块很多时：
-
-* 用包统一管理模块
-* 结构更清晰
-* 更方便维护
-
-包本质上也是模块。
-
-只不过是“模块管理器”。
-
-人类很喜欢把东西装进更大的盒子里：
-
-* 模块装进包
-* 包装进项目
-* 项目装进 Git
-* Git 再装进焦虑。
-
----
-
-# `__init__.py`
-
-作用：
-
-* 标识当前目录是一个包
-* 可以写包的初始化代码
-* 可以描述包信息
-
-示例：
+### 在`__init__.py`文件中可以描述包信息
 
 ```python
 # 包版本
 __version__ = "1.0.0"
-
 # 包作者
 __author__ = "周翔"
 ```
 
 ---
 
-# 包的导入方式
+## 包的导入方式
 
-假设：
+前三种导入模块，后两种导入模块中的功能。
 
-* 包名：`utils`
-* 模块名：`my_fun`
-* 功能名：`log`
+假设包名是`utils`，模块名是`my_fun`，功能名是`log`。
 
----
+| 导入形式 | 代码样例 | 调用方式 | 调用示例 |
+|----------|----------|----------|----------|
+| `import 包名.模块名` | `import utils.my_fun` | `包名.模块名.功能名` | `utils.my_fun.log` |
+| `from 包名 import 模块名` | `from utils import my_fun` | `模块名.功能名` | `my_fun.log` |
+| `from 包名 import *` | `from utils import *` | `模块名.功能名` | `my_fun.log` |
+| `from 包名.模块名 import 功能名` | `from utils.my_fun import log` | `功能名` | `log` |
+| `from 包名.模块名 import *` | `from utils.my_fun import *` | `功能名` | `log` |
 
-| 导入形式                   | 代码样例                           | 调用方式                 |
-| ---------------------- | ------------------------------ | -------------------- |
-| import 包名.模块名          | `import utils.my_fun`          | `utils.my_fun.log()` |
-| from 包名 import 模块名     | `from utils import my_fun`     | `my_fun.log()`       |
-| from 包名 import *       | `from utils import *`          | `my_fun.log()`       |
-| from 包名.模块名 import 功能名 | `from utils.my_fun import log` | `log()`              |
-| from 包名.模块名 import *   | `from utils.my_fun import *`   | `log()`              |
+### 目录结构示例
 
----
+大文件夹中包含`utils`包文件（`__init__.py`、`my_fun.py`、`my_var.py`）和一个需要导入模块或功能的文件。
 
-# 导入包中的模块
+### 需要导入模块或功能的文件的代码如下
 
 ```python
-import utils.my_fun
-
-utils.my_fun.log1()
-utils.my_fun.log2()
-```
-
----
-
 # 导入模块
+# import utils.my_fun
+# utils.my_fun.log1()
+# utils.my_fun.log2()
 
-```python
-from utils import my_fun
+# from utils import my_fun
+# my_fun.log1()
+# my_fun.log2()
 
-my_fun.log1()
-my_fun.log2()
-```
-
----
-
-# 导入包中的所有模块
-
-如果：
-
-```python
-from utils import *
-```
-
-需要在：
-
-```python
-__init__.py
-```
-
-中添加：
-
-```python
-__all__ = ["my_fun", "my_var"]
-```
-
-表示允许导入哪些模块。
-
----
-
-# 示例
-
-```python
-from utils import *
-
-my_fun.log1()
-my_fun.log2()
-my_fun.log3()
-
-print(my_var.NAME)
-print(my_var.PI)
-```
-
----
+# 如果通过 from utils import * 导入包下的所有模块
+# 需要__init__文件中添加 __all__ = ["my_fun", "my_var"]（包中的两个模块，写几个导入就几个模块）
+# from utils import *
+# my_fun.log1()
+# my_fun.log2()
+# my_fun.log3()
+# print(my_var.NAME)
+# print(my_var.PI)
 
 # 导入模块中的功能
+# from utils.my_fun import log1, log3
+# log1()
+# log3()
 
-```python
-from utils.my_fun import log1, log3
+# 相对路径（从当前目录查找）
+# from utils.my_fun import log
 
-log1()
-log3()
-```
-
----
-
-# 相对路径与绝对路径
-
-## 相对路径
-
-从当前目录开始查找。
-
-```python
-from utils.my_fun import log
-```
-
----
-
-## 绝对路径
-
-从项目根目录开始查找。
-
-```python
+# 绝对路径（从项目的根目录查找）
 from 第二章.utils.my_fun import *
-
 log1()
 log2()
 log3()
@@ -509,70 +228,21 @@ log3()
 
 ---
 
-# 总结
+## 关键点总结
 
----
+### `__name__`内置变量
 
-## 模块
+- 直接运行当前模块时，`__name__`的值为`__main__`
+- 当该模块被导入时，`__name__`的值就是模块的名称（如`my_fun`）
 
-本质：
+### `__all__`模块变量
 
-```text
-一个 .py 文件
-```
+- 是一个模块级别的特殊变量
+- 用于指定`from 模块名 import *`时会导入哪些功能
+- 只控制`from...import *`时的导入行为，不影响直接导入具体功能
 
-作用：
+### `__init__.py`文件
 
-* 代码复用
-* 功能拆分
-* 方便维护
-
----
-
-## 包
-
-本质：
-
-```text
-一个包含 __init__.py 的文件夹
-```
-
-作用：
-
-* 管理多个模块
-* 组织大型项目
-
----
-
-## 常用导入方式
-
-推荐：
-
-```python
-import 模块名
-```
-
-或者：
-
-```python
-from 模块 import 功能
-```
-
-不推荐：
-
-```python
-from xxx import *
-```
-
-因为容易污染命名空间。
-
-所谓“命名空间污染”，本质上就是：
-
-你写了个 `log()`。
-
-别人也写了个 `log()`。
-
-Python 开始沉默。
-
-程序员开始尖叫。
-
+- 标识一个文件夹是一个Python包
+- 可以包含包的信息（版本、作者等）
+- 可以通过`__all__`控制`from 包名 import *`时导入的模块

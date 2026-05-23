@@ -2,7 +2,7 @@
 title: 核心语法-函数
 published: 2026-05-22
 description: Python函数
-tags: [Python函数]
+tags: [Python函数,学习]
 category: Python
 image: "api"
 draft: false
@@ -11,272 +11,140 @@ mathjax: false
 comments: true
 ---
 
-# Python 函数笔记
+## 介绍
 
-函数像一台已经组装好的机器。
-你给它输入，它帮你完成某件事，再把结果还给你。人类发明函数，本质上就是懒。因为没人愿意把同样的代码复制八百遍。文明能发展，全靠大家不想重复劳动。
+函数是组织好的、可重复使用的、用来实现特定功能的代码片段。
 
----
+`input()`、`print()` 是Python的内置函数（`max()`、`min()`、`len()`、`sum()`等）。
 
-# 一、什么是函数
-
-函数是：
-
-* 组织好的
-* 可重复使用的
-* 用来实现特定功能的代码片段
-
-比如：
-
-```python
-print()
-input()
-max()
-min()
-len()
-sum()
-```
-
-这些都是 Python 内置函数。
-
-特点：
-
-* 提前定义好
-* 可以重复使用
-* 实现特定功能
+- 是提前定义好的
+- 可以重复使用
+- 实现特定功能
 
 ---
 
-# 二、函数定义
+## 函数定义
 
-函数必须：
-
-* 先定义
-* 后调用
-
-基本格式：
+定义函数（参数列表和返回值可有可无，函数必须先定义后调用）：
 
 ```python
 def 函数名(参数列表):
     函数体
+    ......
     return 返回值
-```
 
-调用函数：
-
-```python
+# 调用函数
 函数名(参数)
 ```
 
----
-
-## 示例：定义一个函数
-
 ```python
+# 函数的定义
 def out_line():
     print("————————————")
-```
 
-调用：
-
-```python
+# 函数的调用
 out_line()
 ```
 
 ---
 
-# 三、函数的参数与返回值
+## 函数的参数与返回值
 
-## 1. 参数
+函数定义时如果有多个参数，多个参数之间使用逗号(`,`)分隔。
 
-多个参数之间使用逗号隔开：
+`return`语句只有返回功能，而没有输出打印功能，如果要输出，需要结合`print()`函数来实现。
 
-```python
-def test(a, b, c):
-    pass
-```
-
----
-
-## 2. return 的作用
-
-`return` 只有“返回”功能。
-
-它不会自动打印。
-
-如果想看到结果：
+- **形参（形式参数）**：函数定义时括号里的参数，只能在函数内使用（局部变量）
+- **实参（实际参数）**：函数在实际调用时传入的参数
 
 ```python
-print(函数返回值)
-```
-
----
-
-## 3. 形参和实参
-
-### 形参（形式参数）
-
-函数定义时写的参数：
-
-```python
-def add(x, y):
-```
-
-这里 `x`、`y` 就是形参。
-
-特点：
-
-* 只能在函数内部使用
-* 属于局部变量
-
----
-
-### 实参（实际参数）
-
-调用函数时真正传进去的数据：
-
-```python
-add(2, 3)
-```
-
-这里 `2`、`3` 就是实参。
-
----
-
-# 四、函数案例
-
----
-
-## 1. 计算圆面积
-
-```python
+# 计算圆的面积
 def circle_area(r):
     area = 3.14 * r * r
     return area
 
 c_area = circle_area(10)
-
 print(c_area)
-```
 
----
-
-## 2. 计算长方形面积
-
-```python
+# 计算长方形的面积
 def rectangle_area(l, w):
     area = l * w
     return area
 
 c_area = rectangle_area(6, 8)
-
 print(c_area)
 ```
 
----
-
-# 五、返回多个值
-
-函数可以同时返回多个值。
-
-多个值会自动封装成元组。
-
----
-
-## 示例
-
 ```python
-def circle_area_len(r):
-    return 3.14 * r * r, round(2 * 3.14 * r, 1)
+# 计算圆的面积和周长
+def circle_area_len(r):  # round(数字, 保留几位小数)
+    return 3.14 * r * r, round(2 * 3.14 * r, 1)  # 需要返回多个值，用逗号隔开
 
-al = circle_area_len(10)
+al = circle_area_len(10)   # 多个返回值被封装进一个元组中
+print(al)   # 输出(314.0, 62.8) 是一个元组
 
-print(al)
-```
-
-输出：
-
-```python
-(314.0, 62.8)
-```
-
-本质：
-
-```python
-(面积, 周长)
-```
-
-这是一个元组。
-
----
-
-## 元组解包
-
-可以直接拆开接收：
-
-```python
+# 直接拿到返回的多个值（元组解包操作）
 area, length = circle_area_len(10)
-
 print(f"面积是{area}, 周长是{length}")
 ```
 
 ---
 
-# 六、函数说明文档（Docstring）
+## 函数说明文档
 
-函数说明文档：
+函数说明文档（Docstring）是写在函数开头，用三个引号包裹的字符串，用于解释函数的功能、参数、返回值等信息，方便调用者清楚函数的具体作用及细节。
 
-* 写在函数开头
-* 使用三个引号
-* 用来解释函数功能、参数、返回值
-
-这样别人调用函数时能知道它是干什么的。
-
-程序员最怕读没有注释的代码。那感觉像在考古。挖半天不知道古人想干嘛。
-
----
-
-## 示例
+**查看函数说明文档：**
+- 使用`help`函数，比如`help(circle_area_len)`
+- 鼠标悬浮在函数上，自动展示（推荐）
 
 ```python
+# 定义一个函数，根据半径计算圆的周长、面积
 def circle_area_len(r):
     """
-    该函数根据圆的半径计算圆的面积和周长
-
-    :param r: 圆的半径
-    :return: 圆的面积、圆的周长
+    该函数根据圆的半径，计算圆的面积和周长
+    :param r: 圆的半径（描述函数的参数）
+    :return: 圆的面积，圆的周长（描述函数的返回值）
     """
-
     return 3.14 * r * r, 2 * 3.14 * r
+
+al = circle_area_len(10)
+print(al)
 ```
-
----
-
-## 查看函数说明文档
-
-### 方法1：help()
 
 ```python
-help(circle_area_len)
+def rectangle_area(l, w):
+    """
+    根据长方形的长度和宽度计算长方形的面积
+    :param l: 长方形的长度
+    :param w: 长方形的宽度
+    :return: 长方形的面积
+    """
+    area = l * w
+    return area
+
+c_area = rectangle_area(6, 8)
+print(c_area)
+
+# 查看函数说明文档
+# help()（不常用）
+help(rectangle_area)
+
+# 鼠标悬停（常用）
 ```
 
 ---
 
-### 方法2：鼠标悬停（推荐）
+## 函数的嵌套调用
 
-直接把鼠标放到函数名上。
+嵌套调用指的是在一个函数中，又调用了另外一个函数。
 
----
+函数调用遵循栈结构，最后被调用的函数最先返回（LIFO：Last In First Out，后进先出）。
 
-# 七、函数嵌套调用
+- 函数被调用 → 压栈（进栈）
+- 函数执行结束 → 弹栈（出栈）
 
-函数里调用函数。
-
-这就叫嵌套调用。
-
----
-
-## 示例
+栈是先进后出，最后进栈的function_c最先出栈，所以先回到调用它的function_b。**谁在栈顶，就执行谁。**
 
 ```python
 def function_a():
@@ -284,956 +152,589 @@ def function_a():
     function_b()
     print("a ... after")
 
-
 def function_b():
     print("b ... before")
     function_c()
     print("b ... after")
 
-
 def function_c():
     print("c ...")
 
-
 function_a()
+
+# 输出：
+# a ... before
+# b ... before
+# c ...
+# b ... after
+# a ... after
 ```
 
-输出：
+**执行流程（栈）：**
 
-```python
-a ... before
-b ... before
-c ...
-b ... after
-a ... after
+栈演示`[]`，下面是栈底：
+
+第一步：开始执行，调用function_a
+```
+[function_a]   # 执行function_a
 ```
 
----
-
-# 八、函数调用栈（重点）
-
-函数调用遵循：
-
-# LIFO（后进先出）
-
-像叠盘子。
-
-最后放上去的，最先拿下来。
-
----
-
-## 执行流程
-
-### 第一步
-
-调用：
-
-```python
-function_a()
+第二步：function_a里调用function_b，暂停a，把b压到栈顶
+```
+[function_a]
+[function_b]   # 执行function_b
 ```
 
-栈：
+第三步：function_b里调用function_c，暂停b，把c压到栈顶
+```
+[function_a]
+[function_b]
+[function_c]   # 现在执行function_c
+```
 
-```python
+开始出栈（函数执行完，从顶部拿走）：
+
+函数function_c代码跑完了，出栈，把最顶上的c拿走
+```
+[function_a]
+[function_b]
+```
+回到function_b，继续向下执行。
+
+function_b剩下的代码也跑完了，再出栈，拿走b
+```
 [function_a]
 ```
+回到function_a继续向下执行。
+
+function_a也跑完，最后出栈，栈变空，程序结束。
 
 ---
 
-### 第二步
-
-`a` 调用 `b`
+## 案例
 
 ```python
-[
-function_a
-function_b
-]
-```
-
----
-
-### 第三步
-
-`b` 调用 `c`
-
-```python
-[
-function_a
-function_b
-function_c
-]
-```
-
-现在栈顶是 `function_c`。
-
-谁在栈顶，谁执行。
-
----
-
-## 开始出栈
-
-### c 执行完
-
-```python
-[
-function_a
-function_b
-]
-```
-
-回到 `function_b`
-
----
-
-### b 执行完
-
-```python
-[function_a]
-```
-
-回到 `function_a`
-
----
-
-### a 执行完
-
-```python
-[]
-```
-
-程序结束。
-
----
-
-# 九、案例练习
-
----
-
-## 1. 计算三角形面积
-
-```python
+# 定义一个函数，根据传入的底和高计算三角形的面积
 def triangle_area(d, g):
     """
-    计算三角形面积
-
-    :param d: 底边
-    :param g: 高
-    :return: 面积
+    计算三角形的面积
+    :param d: 三角形的底边长
+    :param g: 三角形的高
+    :return: 三角形的面积
     """
-
     return d * g / 2
 ```
 
----
-
-## 2. 统计元音字母个数
-
 ```python
-def count_aeiou(s):
+# 定义一个函数，计算传入的字符串中元音字母的个数（元音字母 aeiou 或 AEIOU）
+def count_aeiou(s):   # hello world
     """
     统计字符串中元音字母的个数
-
     :param s: 要统计的字符串
-    :return: 元音字母个数
+    :return: 元音字母的个数
     """
-
     count = 0
-
     for i in s:
         if i in "aeiouAEIOU":
             count += 1
-
     return count
 ```
 
----
-
-## 3. 计算成绩
-
 ```python
+# 定义一个函数，根据传入的高考成绩列表，计算最高分、最低分和平均分
 def calc_score(score_list):
-
     max_s = max(score_list)
     min_s = min(score_list)
-
     avg = round(sum(score_list) / len(score_list), 1)
-
     return max_s, min_s, avg
 
-
 s_list = [112, 3213, 343, 44, 4443, 32]
-
 max_score, min_score, avg_score = calc_score(s_list)
-
 print(f"最高分{max_score}, 最低分{min_score}, 平均分{avg_score}")
 ```
 
----
-
-## 4. 秒转时分秒
-
 ```python
+# 定义一个函数，秒转时、分、秒
 def calc_clock(s):
-
     # 小时
     shi = s // 3600
-
-    # 剩余秒数
+    # 去掉小时后剩余秒数（把已经凑成整小时的秒数全部去掉，只留下剩下的零头秒数，专门用来算分钟和秒）
     rest = s % 3600
-
     # 分钟
     fen = rest // 60
-
     # 秒
     miao = rest % 60
-
     return shi, fen, miao
 
-
+# 测试200秒
 clock = calc_clock(200)
-
 print(clock)
 ```
 
----
-
-# 十、判断三角形类型
-
 ```python
+# 定义一个函数，判断三角形类型
 def jug_three(a, b, c):
-
-    # 判断是否能构成三角形
+    # 先判断能不能构成三角形
     if a + b > c and b + c > a and c + a > b:
-
-        # 等边三角形
+        # 等边：三边都相等
         if a == b == c:
             return "等边三角形"
-
-        # 等腰三角形
+        # 等腰：任意两边相等
         elif a == b or b == c or a == c:
             return "等腰三角形"
-
-        # 普通三角形
+        # 都不相等
         else:
             return "普通三角形"
-
+    # 不能构成三角形
     return "无法构成三角形"
 
-
 d = jug_three(4, 4, 3)
-
 print(d)
-```
 
----
-
-## 另一种写法（先判断等腰）
-
-```python
+# 先判断等腰写法（注意写法差别）
 def jug_three(a, b, c):
-
+    # 第一步：先判断能不能构成三角形
     if a + b > c and b + c > a and c + a > b:
 
-        # 等腰但不是等边
-        if (a == b or b == c or a == c) and not (a == b ==c):
+        # 先判等腰，但排除等边
+        if (a == b or b == c or a == c) and not (a == b == c):
             return "等腰三角形"
 
-        # 等边
+        # 再判等边
         elif a == b == c:
             return "等边三角形"
 
-        # 普通
+        # 剩下普通三角形
         else:
             return "普通三角形"
-
     else:
         return "无法构成三角形"
 ```
 
 ---
 
-# 十一、变量作用域
+## 变量作用域
 
-变量能在哪使用。
+变量的作用域指的是变量的作用范围（标识这个变量在哪里可以用，在哪里不可以用）。
 
-这就是作用域。
-
----
-
-# 1. 全局变量
-
-函数外定义。
-
-整个文件都能使用。
-
-通常写在文件顶部。
-
----
-
-## 示例
+- **全局变量**：在函数之外定义的变量，称之为全局变量，在整个文件中（包括函数内）都可以使用（通常定义在文件的头部）
+- **局部变量**：在函数内部定义的变量，称之为局部变量，只能在该函数内部使用，外部无法访问（函数执行完毕后，会自动销毁其内部局部变量）
 
 ```python
+# 全局变量
 num = 100
 
 def circle_area(r):
-
+    # 局部变量，只能在函数内部使用
     pi = 3.14159
-
     area = pi * r * r
-
+    # 局部变量 num，与上面的num不同
     num = 10000
-
     print(num)
-
     return area
 
-
 c_area = circle_area(10)
-
 print(c_area)
-
 print(num)
 ```
 
-输出：
+**`global`关键字**用于明确的告诉Python解释器，在函数中要使用全局变量，使得可以在函数内部修改全局变量的值。
+
+> 尽量避免在函数中使用全局变量，因为会使代码难以维护和调试。考虑使用函数参数和返回值来传递数据，而不是依赖全局变量。`global`主要用在程序的状态、配置和计数器等场景中。
 
 ```python
-10000
-314.159
-100
-```
-
-注意：
-
-函数里的 `num` 和外面的 `num` 不是同一个变量。
-
----
-
-# 2. 局部变量
-
-函数内部定义。
-
-只能函数内部使用。
-
-函数结束后自动销毁。
-
----
-
-# 十二、global 关键字
-
-用于：
-
-在函数内部修改全局变量。
-
----
-
-## 示例
-
-```python
+# 全局变量
 num1 = 1
 
 def fun1():
-
+    # 先声明，再使用
     global num1
-
     num1 = 100
-
     print(num1)
 
-
 fun1()
-
 print(num1)
 ```
 
-输出：
-
 ```python
-100
-100
-```
-
----
-
-## 调试模式案例
-
-```python
+# 调试开关
 debug_mode = False
 
-
 def enable_debug_mode():
-
     global debug_mode
-
     debug_mode = True
-
     print("调试模式已开启")
 
-
 def disable_debug_mode():
-
     global debug_mode
-
     debug_mode = False
-
     print("调试模式已关闭")
 ```
 
 ---
 
-## 注意
+## 传参方式
 
-尽量少用全局变量。
+传参方式指的是在调用函数时，传递实参的方式。
 
-因为：
+### 位置参数
 
-* 难维护
-* 难调试
-* 容易互相污染
-
-更推荐：
-
-* 参数传递
-* return 返回值
-
----
-
-# 十三、传参方式
-
----
-
-# 1. 位置参数
-
-按顺序传。
-
-顺序必须一致。
-
----
-
-## 示例
+调用函数时根据函数定义时的位置来传递参数（调用函数时参数顺序与定义函数时参数顺序完全一致）。
 
 ```python
+# 定义函数
 def reg_stu(name, age, gender, city):
+    print(f"注册成功,姓名{name},年龄{age},性别{gender},城市{city}")
+    return {"name": name, "age": age, "gender": gender, "city": city}
 
-    print(f"注册成功, 姓名{name}, 年龄{age}, 性别{gender}, 城市{city}")
-
-    return {
-        "name": name,
-        "age": age,
-        "gender": gender,
-        "city": city
-    }
-
-
-stu = reg_stu("周翔", 19, "男", "山东")
-
+stu = reg_stu("周翔", 19, "男", "山东")   # 位置传参
 print(stu)
 ```
 
----
+### 关键字参数
 
-# 2. 关键字参数
-
-通过：
+调用函数时以函数定义时形参名称作为关键字，以"键 = 值"的形式来传递参数（不要求顺序）。
 
 ```python
-参数名 = 值
+# 定义函数
+def reg_stu(name, age, gender, city):
+    print(f"注册成功,姓名{name},年龄{age},性别{gender},城市{city}")
+    return {"name": name, "age": age, "gender": gender, "city": city}
+
+stu = reg_stu(name="周翔", age="19", gender="男", city="山东")   # 关键字传参
+print(stu)
 ```
 
-传递。
-
-不需要顺序一致。
-
----
-
-## 示例
-
 ```python
-stu = reg_stu(
-    name="周翔",
-    age=19,
-    gender="男",
-    city="山东"
-)
+# 定义函数
+def reg_stu(name, age, gender, city):
+    print(f"注册成功,姓名{name},年龄{age},性别{gender},城市{city}")
+    return {"name": name, "age": age, "gender": gender, "city": city}
+
+"""
+如果位置参数和关键字参数混用，关键字参数必须在位置参数之后
+关键字参数之间没有顺序要求
+"""
+stu = reg_stu("周翔", 19, gender="男", city="山东")
+print(stu)
 ```
 
----
-
-# 3. 混合使用
-
-规则：
-
-关键字参数必须在位置参数后面。
+| 参数类型 | 优点 | 缺点 | 应用场景 |
+|----------|------|------|----------|
+| 位置参数 | 简洁 | 可读性差，易出错，难维护 | 参数少（不超过三个），顺序自然 |
+| 关键字参数 | 可读性强，易维护和扩展 | 代码繁琐 | 参数较多，易混淆的场景 |
 
 ---
 
-## 示例
+## 默认参数
+
+默认参数也称缺省参数，用于定义函数时，为参数提供默认值。调用函数时，可以不传递有默认值的参数。
+
+> 默认参数必须放在没有默认值的参数列表后面。一个函数在定义时是可以设置多个默认参数的。
+
+函数调用时，为默认参数传递值，则会修改默认的参数值；如果没有传递该参数，则直接使用默认值。
 
 ```python
-stu = reg_stu(
-    "周翔",
-    19,
-    gender="男",
-    city="山东"
-)
-```
-
----
-
-# 十四、默认参数
-
-默认参数也叫缺省参数。
-
-调用时可以不传。
-
----
-
-## 规则
-
-默认参数必须放后面。
-
----
-
-## 示例
-
-```python
+# 定义函数                       默认值
 def reg_stu(name, age, gender, city="北京"):
-
-    print(f"姓名{name}, 年龄{age}, 性别{gender}, 城市{city}")
-
-    return {
-        "name": name,
-        "age": age,
-        "gender": gender,
-        "city": city
-    }
-
+    print(f"姓名{name},年龄{age},性别{gender},城市{city}")
+    return {"name": name, "age": age, "gender": gender, "city": city}
 
 stu = reg_stu("周翔", 18, "男")
 
+# 函数调用时，为默认参数传递值，则会修改默认的参数值
 stu1 = reg_stu("周翔", 19, "男", "深圳")
 ```
 
----
+```python
+def res_stu(name, age, gender="未知", city="山东"):
+    return {"name": name, "age": age, "gender": gender, "city": city}
 
-# 十五、不定长参数
-
-参数数量不确定时使用。
-
----
-
-# 1. *args（位置不定长参数）
-
-会把多个位置参数：
-
-封装成元组。
+info = res_stu("周翔", 19, city="北京")
+print(info)
+```
 
 ---
 
-## 示例
+## 不定长参数
+
+不定长参数也叫可变参数，用于函数定义及调用时参数个数不确定（0个或多个）的场景。
+
+### 不定长参数 — 位置传递（*args）
+
+传递的所有匹配的位置参数都会被`args`变量收集，这些参数会合并并封装为一个**元组**。`args`是元组类型（注意并不会封装关键字参数）。
+
+> `args`只是约定俗成的变量名，并不是关键字，这里可以使用任何合法的变量名（如`*data`）。
 
 ```python
 def calc_num(*args):
-
     min_num = min(args)
     max_num = max(args)
     avg_num = sum(args) / len(args)
-
     return min_num, max_num, avg_num
 
-
+# 调用函数
 min_num, max_num, avg_num = calc_num(1, 2, 3, 4)
-
-print(f"最大值{max_num}, 最小值{min_num}, 平均值{avg_num}")
+print(f"最大值{max_num},最小值{min_num},平均值{avg_num}")
 ```
 
----
+### 不定长参数 — 关键字传递（**kwargs）
 
-# 2. **kwargs（关键字不定长参数）
+参数是以"键 = 值"形式传递的关键字参数，这些"键 = 值"参数都会被`kwargs`接受，并封装为一个**字典**类型。
 
-会把：
+> `kwargs`只是约定俗成的变量名，并不是关键字，这里可以使用任何合法的变量名（如`**option`）。
 
 ```python
-键 = 值
+def calc_date(*args, **kwargs):
+    """
+    根据传入的数据，计算最大值、最小值和平均值
+    :param args: 不定长位置参数，需要计算的数据
+    :param kwargs: 不定长关键字参数
+        round: 保留的小数位个数
+        print: 是否打印输出
+    :return: 最小值、最大值、平均值
+    """
+    min_date = min(args)
+    max_date = max(args)
+    avg_date = sum(args) / len(args)
+
+    # 如果round值不为空，保留小数位数
+    if kwargs.get('round') is not None:
+        avg_date = round(avg_date, kwargs.get('round'))
+
+    # print=False不打印，print=True打印
+    if kwargs.get('print'):
+        print(f"最小值{min_date},最大值{max_date},平均值{avg_date}")
+
+    return min_date, max_date, round(avg_date, kwargs.get('round'))
+
+# 调用函数          不定长位置参数         不定长关键字参数
+print(calc_date(2, 7, 9, 10, 45, 1, 2, round=2, print=True))
 ```
 
-封装成字典。
-
----
-
-## 示例
+- **不定长位置参数**适用于处理数量不确定的数据
+- **不定长关键字参数**处理数量不确定的选项（函数的配置参数，用来定制函数的行为）
+- 不定长位置参数和不定长关键字参数同时存在时，**先定义不定长位置参数**
 
 ```python
-def calc_data(*args, **kwargs):
-
-    min_data = min(args)
-    max_data = max(args)
-
-    avg_data = sum(args) / len(args)
-
-    if kwargs.get("round") is not None:
-        avg_data = round(avg_data, kwargs.get("round"))
-
-    if kwargs.get("print"):
-        print(f"最小值{min_data}, 最大值{max_data}, 平均值{avg_data}")
-
-    return min_data, max_data, avg_data
-
-
-print(
-    calc_data(
-        2, 7, 9, 10, 45, 1, 2,
-        round=2,
-        print=True
-    )
-)
-```
-
----
-
-## 奶茶例子理解
-
-核心参数：
-
-```python
+# 核心数据（你要什么）
 点奶茶("珍珠奶茶")
-```
 
-附加选项：
-
-```python
-点奶茶(
-    "珍珠奶茶",
-    甜度="少糖",
-    冰度="去冰",
-    加料=["布丁", "珍珠"],
-    大小="大杯"
-)
+# 选项（你要什么样的）
+点奶茶("珍珠奶茶", 甜度="少糖", 冰度="去冰", 加料=["布丁", "珍珠"], 大小="大杯")
 ```
 
 ---
 
-# 十六、函数作为参数
+## 参数类型（函数作为参数）
 
-函数也能传进函数里。
-
-这叫：
-
-高阶函数。
-
-人类终于把“把工具当工具使用”发展到极致。连函数都能当参数传。代码世界逐渐魔法化。
-
----
-
-## 示例
+- **普通参数**：数字、布尔、字符串、列表、元组、集合、字典等
+- **特殊参数**：函数
 
 ```python
 def add(x, y):
     return x + y
 
-
 def subtract(x, y):
     return x - y
-
 
 def multiply(x, y):
     return x * y
 
-
 def divide(x, y):
     return x / y
 
-
+# oper是函数类型的参数
 def calc(x, y, oper):
-
     return oper(x, y)
 
-
-print(calc(2, 3, add))
+# 实际的计算数据
+print(calc(2, 3, add))   # 传递的是函数中封装的逻辑
 ```
 
-执行：
+**执行流程：**
+1. 代码走到`print(calc(2, 3, add))`开始执行
+2. 把2传给x，把3传给y
+3. 把add整个函数传给oper
+4. 此时oper就是add，等于执行add(2, 3)
+5. 跳进add函数，x=2，y=3 → return 5
+6. 把5返回到calc，calc变为return 5
+7. 打印5
+
+> 谁调用我，我就把值返回给谁。是calc调用了add，所以add的return值只能还给calc。
 
 ```python
-add(2, 3)
-```
+def double(n):
+    return n * 2
 
-结果：
+def square(n):
+    return n * n
 
-```python
-5
-```
+def calc(n, oper):
+    res = oper(n)
+    return res
 
----
-
-# 十七、匿名函数 lambda
-
-没有名字的函数。
-
-适合：
-
-* 逻辑简单
-* 只用一次
-
----
-
-## 基本格式
-
-```python
-lambda 参数: 表达式
+a = calc(3, square)
+print(a)
 ```
 
 ---
 
-## 示例
+## 匿名函数（lambda表达式）
 
-### 分割线
+匿名函数指的是没有名称的函数，需要通过`lambda`表达式来声明函数，可以简化简单函数的编写（单行表达式）。
+
+- 函数逻辑比较简单（单行表达式）且只在一个地方使用时，可以考虑匿名函数，简化书写（通常作为高阶函数的参数使用）
+- 匿名函数中可以返回结果，也可以不返回结果。返回结果时，不需要写`return`，表达式的运行结果就是返回结果
 
 ```python
+# 打印分割线
 out_line = lambda: print("--------")
-
 out_line()
+
+# 计算两个数的和
+sum_date = lambda x, y: x + y
+print(sum_date(100, 200))
 ```
 
----
-
-### 两数求和
-
 ```python
-sum_data = lambda x, y: x + y
+# 完成如下列表的排序，按照每一个元素的字符个数，从小到大排序（匿名函数应用场景）
 
-print(sum_data(100, 200))
+# 方法1
+date_list = ["C++", "C", "Python", "jack", "PHP", "Java", "Go", "JavaScript", "Rust"]
+
+date_list.sort(key=lambda item: len(item), reverse=True)
+print(date_list)
+
+# 代码解析（sort()）
+# sort()会自动遍历列表每一个元素
+# 每遍历一个，就自动把元素当作参数传给 key 对应的函数
+# item 就是用来接住传进来的那个列表元素的
+# key: 排序依据（传一个函数名）
+# reverse=False 从小到大
+# reverse=True 从大到小
+# key=lambda item: len(item) → 按单词长度排序
+# reverse=True → 从长到短
+# reverse=False / 不写 → 从短到长
+
+# 方法2
+date_list = ["C++", "C", "Python", "jack", "PHP", "Java", "Go", "JavaScript", "Rust"]
+date_list.sort(key=len)   # 按长度从小到大排序
+print(date_list)
+
+# 代码解析
+# sort自己循环：
+#     拿元素 → 丢给 len() → 得到长度 → 按长度排序
+# 不能写key=len()的原因：
+#     len函数本身（只是把工具交出去，不干活）
+#     len()立刻调用函数（马上要执行、必须给参数）
 ```
 
+**建议使用匿名函数的情况：** 函数逻辑简单，只在一个地方调用（常作为高阶函数的参数）
+
+**建议使用命名函数的情况：** 函数逻辑复杂，需要多步操作，需要多个地方重复使用或需要加文档说明的场景
+
+> 代码的可读性和可维护性比简洁性更重要。
+
 ---
 
-# 十八、lambda 排序案例
+## 递归案例
 
 ```python
-data_list = [
-    "C++",
-    "C",
-    "Python",
-    "jack",
-    "PHP",
-    "Java",
-    "Go",
-    "JavaScript",
-    "Rust"
-]
+# 定义一个函数，根据传入的数字，计算该数字阶乘的结果
+# 计算n的阶乘，n的阶乘公式 f(n) = n * f(n - 1)
+# 递归调用：在函数中自己调用自己的情况，一定要有终结点
 
-data_list.sort(
-    key=lambda item: len(item),
-    reverse=True
-)
-
-print(data_list)
-```
-
----
-
-## sort() 原理
-
-sort 会：
-
-* 自动遍历列表
-* 把每个元素传给 key 对应函数
-* 根据返回值排序
-
----
-
-## key=len
-
-```python
-data_list.sort(key=len)
-```
-
-意思：
-
-按长度排序。
-
----
-
-## 为什么不能写 len()
-
-因为：
-
-```python
-len
-```
-
-是把函数交出去。
-
-而：
-
-```python
-len()
-```
-
-是立刻执行函数。
-
-但你没给参数。
-
-所以会报错。
-
----
-
-# 十九、递归函数
-
-函数自己调用自己。
-
-必须有：
-
-# 终止条件
-
-否则无限递归。
-
-程序直接炸。
-
-电脑风扇开始像直升机起飞。人类再一次成功把硅片逼疯。
-
----
-
-# 1. 阶乘
-
-```python
 def fac(n):
-
     if n == 1:
         return 1
-
     else:
         return n * fac(n - 1)
 
+"""
+代码执行过程（栈）
+栈特点：后进先出
 
+开始调用，一层一层进栈：
+栈底：fac(5) → 要算 5 * fac(4)
+入栈：fac(4) → 要算 4 * fac(3)
+入栈：fac(3) → 要算 3 * fac(2)
+入栈：fac(2) → 要算 2 * fac(1)
+入栈：fac(1) → 满足 n==1，触发终止条件，return 1
+
+此时的栈结构：
+fac(1)   ← 栈顶（只执行栈顶代码）当n=1时return 1，所以fac(1)=1
+fac(2)   （栈顶=最内层、被别人调用的小弟）
+fac(3)   （fac(2)调fac(1)，fac(2)=2*fac(1)=2）
+fac(4)   （fac(3)调fac(2)，fac(3)=3*fac(2)=6）
+fac(5)   ← 栈底
+
+fac(1)、fac(2)、fac(3)、fac(4)都有返回值
+只是它们只返回给上一层函数（谁调用我，谁就是我的上一层）自己用，不往外给你打印，你看不到
+最终只有最外面的fac(5)把最终结果交给print
+"""
 print(fac(5))
 ```
 
----
-
-## 执行过程（栈）
-
 ```python
-fac(5)
-↓
-5 * fac(4)
-
-fac(4)
-↓
-4 * fac(3)
-
-fac(3)
-↓
-3 * fac(2)
-
-fac(2)
-↓
-2 * fac(1)
-
-fac(1)
-↓
-return 1
-```
-
-然后开始返回：
-
-```python
-fac(2) = 2 * 1 = 2
-fac(3) = 3 * 2 = 6
-fac(4) = 4 * 6 = 24
-fac(5) = 5 * 24 = 120
-```
-
----
-
-# 2. 累加和
-
-```python
+"""
+计算1+2+3+4+5+...n的累加和
+n = 1 -> 1
+n = 2 -> 2 + sum(n - 1)
+n = 3 -> 3 + sum(n - 1)
+n = 4 -> 4 + sum(n - 1)
+......
+n = n -> n + sum(n - 1)
+"""
 def sum_num(n):
-
-    if n == 1:
+    if n == 1:   # 终结点
         return 1
-
     else:
         return n + sum_num(n - 1)
-
 
 print(sum_num(3))
 print(sum_num(4))
 print(sum_num(5))
+
+"""
+栈顶 → sum_num(1)
+sum_num(2)
+sum_num(3)
+sum_num(4)
+栈底 → sum_num(5)
+"""
 ```
 
 ---
 
-# 二十、综合案例：订单结算
-
-需求：
-
-根据：
-
-* 商品信息
-* 优惠券
-* 积分
-* 运费
-
-计算订单总金额。
-
----
-
-## 规则
-
-### 优惠券
-
-* 满 5000 才能使用
-* 不能超过商品总金额
-
----
-
-### 积分
-
-* 满 5000 才能使用
-* 100 积分抵 1 元
-* 只能整百抵扣
-* 不能超过商品总金额
-
----
-
-# 代码实现
+## 综合案例：订单金额计算
 
 ```python
-def calc_order_cost(
-    *args,
-    coupon=0.0,
-    score=0.0,
-    express=0.0
-):
+"""
+定义一个函数，用于根据传入的一批商品信息（商品名、价格、数量）、优惠（优惠券、积分抵扣）、
+运费信息计算订单的总金额。
+
+具体规则如下：
+1. 优惠券需要商品满5000元才可以使用，且优惠券金额不能超过商品总价
+2. 积分抵扣需要商品总金额满5000元才可以使用，100积分抵1元（且抵扣金额不能超过商品总价，
+   积分只能整百抵扣）
+"""
+
+def calc_order_cost(*args, coupon=0.0, score=0.0, express=0.0):  # 设置默认值，防止未传参数报错
     """
-    计算订单总金额
-
-    :param args:
-        商品信息
-        (商品名, 价格, 数量)
-
-    :param coupon:
-        优惠券金额
-
-    :param score:
-        积分
-
-    :param express:
-        运费
-
-    :return:
-        订单总金额
+    定义一个函数，用于根据传入的一批商品信息（商品名、价格、数量）、优惠（优惠券、积分抵扣）
+    :param args: 商品信息（商品名、价格、数量）-> 传递多个元组()或列表[]，args也是一个元组，也就是元组里封装多个元组
+    :param coupon: 优惠券
+    :param score: 积分
+    :param express: 运费
+    :return: 订单的总金额
     """
+    # 订单总金额 = 商品总金额 - 优惠券 - 积分抵扣 + 运费
 
-    # 计算商品总金额
-    total_price = [
-        goods[1] * goods[2]
-        for goods in args
-    ]
-
+    # 1. 计算商品总金额
+    # 把args大元组里的每个商品小元组中的价格与数量相乘封装进一个列表（列表表达式）
+    total_price = [goods[1] * goods[2] for goods in args]
+    # 用sum()计算总金额
     total_cost = sum(total_price)
 
     # 优惠券抵扣
@@ -1241,109 +742,18 @@ def calc_order_cost(
         total_cost -= coupon
 
     # 积分抵扣
-    if total_cost >= 5000 and score // 100 <= total_cost:
+    if total_cost >= 5000 and score // 100 <= total_cost:  # //整除
         total_cost -= score // 100
 
-    # 加运费
+    # 添加运费
     total_cost += express
 
     return total_cost
-```
 
----
-
-## 测试
-
-```python
-total1 = calc_order_cost(
-    ("鼠标", 188, 2),
-    ("键盘", 388, 1),
-    ("手机", 3999, 1),
-    coupon=10,
-    score=4000,
-    express=9.9
-)
-
+# 测试函数
+total1 = calc_order_cost(("鼠标", 188, 2), ("键盘", 388, 1), ("手机", 3999, 1), coupon=10, score=4000, express=9.9)
 print(total1)
 
-
-total2 = calc_order_cost(
-    ("鼠标", 188, 2),
-    ("键盘", 388, 1),
-    ("手机", 6999, 1),
-    coupon=10,
-    score=4000,
-    express=9.9
-)
-
+total2 = calc_order_cost(("鼠标", 188, 2), ("键盘", 388, 1), ("手机", 6999, 1), coupon=10, score=4000, express=9.9)
 print(total2)
 ```
-
----
-
-# 二十一、什么时候用 lambda，什么时候用 def
-
----
-
-## 用 lambda
-
-适合：
-
-* 一行逻辑
-* 只用一次
-* 当参数传递
-
----
-
-## 用 def
-
-适合：
-
-* 多行逻辑
-* 多次复用
-* 需要文档说明
-* 逻辑复杂
-
----
-
-# 最后的核心总结
-
-函数的本质：
-
-```text
-输入数据
-   ↓
-函数处理
-   ↓
-返回结果
-```
-
-重点掌握：
-
-* 函数定义
-* 参数
-* return
-* 作用域
-* 位置参数
-* 关键字参数
-* 默认参数
-* *args
-* **kwargs
-* lambda
-* 递归
-* 调用栈
-
-这些东西刚学时会觉得乱。
-
-因为函数其实是“代码抽象”的开始。
-
-从这里开始，你写的代码不再只是“一行一行执行”。
-
-而是在慢慢学会：
-
-“把逻辑封装起来”。
-
-这一步很关键。
-
-很多人 Python 学不会，不是语法不会，而是脑子里没有“封装”和“调用”的感觉。代码像一团散沙。函数就是第一次把沙子烧成砖。
-
