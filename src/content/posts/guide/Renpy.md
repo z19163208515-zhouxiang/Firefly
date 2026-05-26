@@ -1,6 +1,6 @@
 ---
 title: Renpy
-published: 2026-05-22
+published: 2026-05-26
 description: Galgame
 tags: [Galgame制作,Renpy]
 category: Galgame制作
