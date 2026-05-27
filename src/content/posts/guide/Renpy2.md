@@ -22,7 +22,7 @@ game/
 ├── screens.rpy     # 调节窗口的UI界面
 ├── script.rpy      # 脚本文件
 └── .ttf            # 字体文件
-
+```
 ```python
 #定义游戏角色
 define z = Character('周翔')
