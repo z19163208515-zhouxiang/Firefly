@@ -11,7 +11,7 @@ mathjax: false
 comments: true
 ---
 
-
+```python
 game/
 ├── audio/          # 音频文件夹（背景音乐、音效、配音等）
 ├── gui/            # UI贴图文件夹
