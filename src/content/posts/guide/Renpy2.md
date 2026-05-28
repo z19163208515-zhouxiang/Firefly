@@ -36,22 +36,22 @@ image blue:
 
 #调整人物位置和大小
 image c1:
-    "images/c1.jpg"
+    "images/c1.png"
     #缩放图片
-    zoom 1.35
+    zoom 0.35
     #设置图像锚点
     xanchor 0#设置图像水平锚点为左边
     yanchor 1#设置图像垂直锚点为底部
     #设置图像位置
-    xpos 0.3
+    xpos 1000
     ypos 300
 image c2:
-    "images/c2.jpg"
-    zoom 1.35
+    "images/c2.png"
+    zoom 0.35
     xanchor 0
     yanchor 1
-    xpos 0.3
-    ypos 1
+    xpos 800
+    ypos 300
 
 #也可以预定义音频路径
 define qt = "audio/qt.mp3"
@@ -64,7 +64,7 @@ define flag = 0
 
 
 label start:
-    stop music fadeout 4#淡出时间为1秒 把音频去掉 主界面音乐会一直播放
+    stop music fadeout 4#淡出时间为4秒 解决下面把音频去掉 主界面音乐会一直播放
 #添加选项预备知识
 #    python:#可多行赋值
 #       flag = 1
@@ -79,15 +79,14 @@ label start:
 
     #scene 清除当前界面的所有图像 然后显示该图像
     scene blue 
-
-    with fade#背景淡入淡出
+    with fade#背景淡入淡出 先图后with特效
 
     #播放音频文件
 # play music：背景音乐，单首循环，换新曲会自动替换
 # play sound：短音效，可多个同时播放，不循环
 # play voice：人物配音，一句接一句，自动打断上一条
 # play audio：通用音轨，纯叠加，无特殊规则限制
-    #play music qt fadein 1.0#淡入时间为1秒 把音频去掉 主界面音乐会一直播放
+    #play music qt fadein 2#淡入时间为2秒  把音频去掉 主界面音乐会一直播放(上面有解决方案)
 
     #show 显示角色(不会覆盖背景)
     show c1
@@ -107,12 +106,11 @@ label start:
     # hide c1 把c1角色隐藏 只保留c2角色
 
     #同时存在两个角色 调整位置
-    show c1 as c1_flipped:#show c1 as c1_flipped可以显示两张c1图片 其中c1_flipped是改变xpos的图片
-        xpos 0.9
+    show c1:#show c1 as c1_flipped(取类名)可以显示两张c1图片(互相独立) 其中c1_flipped是改变xpos的图片
+        xpos 1000 #改变的是c1 as c1_flipped
     show c2:
-        xpos 0.1
+        xpos 300
         xzoom -1#水平翻转图像
-
     with dissolve#渐影显示角色c2
     e """
     你好 我叫艾米丽。
