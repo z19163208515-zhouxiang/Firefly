@@ -1,5 +1,5 @@
 ---
-title: Renpy
+title: Renpy使用前准备
 published: 2026-05-26
 description: Galgame
 tags: [Galgame制作,Renpy]
