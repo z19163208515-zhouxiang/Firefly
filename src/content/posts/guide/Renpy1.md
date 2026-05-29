@@ -2,7 +2,7 @@
 title: Renpy使用前准备
 published: 2026-05-26
 description: Galgame
-tags: [Galgame制作,Renpy]
+tags: [Galgame制作,Renpy用法]
 category: Galgame制作
 image: "api"
 draft: false
