@@ -1,6 +1,6 @@
 ---
 title: Renpy高级图像变换及其语言
-published: 2026-05-29
+published: 2026-05-27
 description: Galgame
 tags: [Galgame制作,Renpy基本语法]
 category: Galgame制作
@@ -11,7 +11,7 @@ mathjax: false
 comments: true
 ---
 
-```python
+```renpy
 #定义角色
 #what_ 对话正文文本样式  who_ 角色区域样式
 #size文本大小 color颜色 outlines外边框[(粗细,颜色)] 或 [(粗细,颜色,X偏移,Y偏移)]

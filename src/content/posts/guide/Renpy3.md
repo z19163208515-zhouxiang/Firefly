@@ -1,6 +1,6 @@
 ---
 title: Renpy文本标签 段落标签 转义字符 内插数据
-published: 2026-05-28
+published: 2026-05-26
 description: Galgame
 tags: [Galgame制作,Renpy基本语法]
 category: Galgame制作
@@ -11,7 +11,7 @@ mathjax: false
 comments: true
 ---
 
-```python
+```renpy
 #调整image标签的属性，改变图片的大小(后面要写image=blue)
 image blue = Transform("images/blue.jpg", xsize=50, ysize=50)
 

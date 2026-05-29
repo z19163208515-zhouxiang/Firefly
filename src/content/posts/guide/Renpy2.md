@@ -1,6 +1,6 @@
 ---
 title: Renpy制作一个简单的Galgame
-published: 2026-05-27
+published: 2026-05-25
 description: Galgame
 tags: [Galgame制作,制作一个简单的Galgame]
 category: Galgame制作
@@ -11,7 +11,7 @@ mathjax: false
 comments: true
 ---
 
-```python
+```renpy
 game/
 ├── audio/          # 音频文件夹（背景音乐、音效、配音等）
 ├── gui/            # UI贴图文件夹
@@ -23,7 +23,7 @@ game/
 ├── script.rpy      # 脚本文件
 └── .ttf            # 字体文件
 ```
-```python
+```renpy
 #定义游戏角色
 define z = Character('周翔')
 define e = Character('艾米丽')

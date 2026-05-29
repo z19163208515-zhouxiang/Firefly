@@ -1,6 +1,6 @@
 ---
 title: Renpy 人物动效 背景滤镜以及转场
-published: 2026-05-29
+published: 2026-05-28
 description: Galgame
 tags: [Galgame制作,Renpy基本语法]
 category: Galgame制作
@@ -10,7 +10,7 @@ toc: true
 mathjax: false
 comments: true
 ---
-```python
+```renpy
 #原位置溶解出场
 transform dissolve_appear:
     alpha 0.0             # 初始状态：完全透明
