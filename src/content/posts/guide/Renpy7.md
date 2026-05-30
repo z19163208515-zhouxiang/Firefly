@@ -1,5 +1,5 @@
 ---
-title: Renpy 一个简单的主界面
+title: Renpy 一个简单的主界面(模板)
 published: 2026-05-30
 description: Galgame
 tags: [Galgame制作,Renpy模板]
@@ -15,7 +15,6 @@ comments: true
 # 主界面 myscreen.rpy
 # Ren'Py 8.5.3
 # =====================================================
-
 
 # =====================================================
 # 背景图片

@@ -187,6 +187,7 @@ transform dissolve_out_right:
 transform cinema:
     yoffset 0          # Y轴偏移为0（保持原位，预留变换接口）
 
+
 # 电影黑边屏幕
 screen letterbox:
     # ===== 上黑边 =====
@@ -393,10 +394,12 @@ label start:
     pause 5.0                         #暂停5秒（让文字显示5秒再继续）
     hide center_text                  #隐藏文字
 
+
     show blue :
         xsize 1920
         ysize 1080
         matrixcolor BrightnessMatrix(-0.3) #黑色滤镜(夜晚)
+
 
     show screen letterbox#添加电影黑框(在上面有定义)
 
@@ -408,6 +411,7 @@ label start:
     hide screen letterbox#隐藏电影黑框
     $ style.say_window = style.window  #恢复默认边框
     "大树"
+    
     #show c1 at earthquake
         #可以修改动态效果(一定加冒号)
         #xoffset 0
