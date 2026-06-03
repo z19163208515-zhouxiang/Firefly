@@ -12,6 +12,7 @@ comments: true
 password: "070227"
 passwordHint: "我的生日"
 pinned: true
+comment: true
 ---
 
 # 日常作息与学习笔记
