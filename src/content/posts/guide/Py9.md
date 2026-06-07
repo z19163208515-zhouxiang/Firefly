@@ -87,27 +87,29 @@ print(response.text)
 ### 完善版本（带解析）
 
 ```python
-import requests  
-from lxml import html  
+#引入必备库和模块
+import requests
+from lxml import html
 
-# 定义url  
-target_url = "https://www.tiobe.com/tiobe-index/"  
+#定义url
+target_url = "https://www.tiobe.com/tiobe-index/"
 
-# 发送请求，获取数据  
-response = requests.get(target_url)  
+#发送请求 获取数据
+response = requests.get(target_url)
+response.encoding="utf-8"
 
-# 把网页的纯文本代码变成能直接用XPath抓数据的解析对象  
-doc = html.fromstring(response.text)  
+#把网页的纯文本代码变成能直接用xpath抓取数据的解析对象
+doc = html.fromstring(response.text)
 
-# 解析表头数据  
-th_list = doc.xpath("//table[@id = 'top20']/thead/tr/th/text()")  
-print(th_list)  
+#爬取头部数据
+hd_list = doc.xpath("//table[@class = 'table table-striped table-top20']/thead/tr/th/text()")
+print(hd_list)
 
-# 解析表体数据  
-tr_list = doc.xpath("//table[@id = 'top20']/tbody/tr")  
-for tr in tr_list:  
-    td_list = tr.xpath("./td/text()")  
-    print(td_list)
+#爬取主体数据
+tr_list = doc.xpath("//table[@class = 'table table-striped table-top20']/tbody/tr")
+for tb in tr_list:
+    tb_list = tb.xpath(".//td/text()")
+    print(tb_list)
 ```
 
 ---
