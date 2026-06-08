@@ -3,7 +3,7 @@ title: 核心语法-模块
 published: 2026-05-22
 description: Python模块
 tags: [Python模块,学习]
-category: Python
+category: Python语法
 image: "api"
 draft: false
 toc: true

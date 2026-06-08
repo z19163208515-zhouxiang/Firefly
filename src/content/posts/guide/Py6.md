@@ -3,7 +3,7 @@ title: 核心语法-类型注解
 published: 2026-05-22
 description: Python类型注解
 tags: [Python类型注解,学习]
-category: Python
+category: Python语法
 image: "api"
 draft: false
 toc: true
