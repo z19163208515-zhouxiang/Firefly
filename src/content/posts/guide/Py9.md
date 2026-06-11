@@ -3,7 +3,7 @@ title: 网络机器人(爬虫)入门
 published: 2026-06-07
 description: Python爬虫入门
 tags: [爬虫入门]
-category: Python爬虫
+category: Python
 image: "api"
 draft: false
 toc: true

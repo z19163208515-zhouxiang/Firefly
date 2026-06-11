@@ -3,7 +3,7 @@ title: 核心语法-异常
 published: 2026-05-22
 description: Python异常
 tags: [Python异常,学习]
-category: Python语法
+category: Python
 image: "api"
 draft: false
 toc: true

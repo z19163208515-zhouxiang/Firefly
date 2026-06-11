@@ -1,6 +1,6 @@
 ---
 title: 魔方F2L
-published: 2026-06-10
+published: 2026-06-13
 description: 魔方F2l
 tags: [魔方F2L]
 category: 魔方

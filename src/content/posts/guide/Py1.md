@@ -3,7 +3,7 @@ title: 核心语法-数据存储与运算
 published: 2026-05-15
 description: Python核心存储与运算
 tags: [Python核心存储与运算,学习]
-category: Python语法
+category: Python
 image: "api"
 draft: false
 toc: true

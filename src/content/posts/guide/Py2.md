@@ -3,7 +3,7 @@ title: 核心语法-流程控制语句
 published: 2026-05-16
 description: Python流程控制语句
 tags: [Python流程控制语句,学习]
-category: Python语法
+category: Python
 image: "api"
 draft: false
 toc: true
