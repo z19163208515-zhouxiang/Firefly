@@ -3,7 +3,7 @@ title: Renpy 一个简单的主界面(模板)
 published: 2026-05-30
 description: Galgame
 tags: [Galgame制作,Renpy模板]
-category: Galgame制作
+category: Renpy
 image: "api"
 draft: false
 toc: true

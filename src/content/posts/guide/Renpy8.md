@@ -3,7 +3,7 @@ title: Renpy 研究院(一些高级效果)[End]
 published: 2026-05-31
 description: Galgame
 tags: [Galgame制作,Renpy语法]
-category: Galgame制作
+category: Renpy
 image: "api"
 draft: false
 toc: true

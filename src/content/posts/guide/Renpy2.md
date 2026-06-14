@@ -3,7 +3,7 @@ title: 制作一个简单的Renpy游戏
 published: 2026-05-25
 description: Galgame
 tags: [Galgame制作,制作一个简单的Renpy游戏]
-category: Galgame制作
+category: Renpy
 image: "api"
 draft: false
 toc: true

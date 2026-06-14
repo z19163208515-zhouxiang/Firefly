@@ -3,7 +3,7 @@ title: Renpy 界面和界面语言
 published: 2026-05-29
 description: Galgame
 tags: [Galgame制作,Renpy基本语法]
-category: Galgame制作
+category: Renpy
 image: "api"
 draft: false
 toc: true

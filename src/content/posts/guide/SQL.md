@@ -3,7 +3,7 @@ title: Waline 评论系统 SQL 管理命令
 published: 2026-05-14
 description: Waline 评论用户、评论、点赞、批量管理 SQL 语句合集
 tags: [SQL,数据库]
-category: 博客工具
+category: SQL
 image: "api"
 draft: false
 toc: true
