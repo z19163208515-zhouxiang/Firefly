@@ -1,8 +1,8 @@
 ---
 title: 核心语法-面向对象基础
-published: 2026-05-21
+published: 2026-06-07
 description: Python面向对象基础
-tags: [Python面向对象基础,学习]
+tags: [Python面向对象基础]
 category: Python
 image: "api"
 draft: false

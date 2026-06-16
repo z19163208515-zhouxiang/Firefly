@@ -1,6 +1,6 @@
 ---
 title: Renpy高级图像变换及其语言
-published: 2026-05-27
+published: 2026-05-04
 description: Galgame
 tags: [Galgame制作,Renpy基本语法]
 category: Renpy

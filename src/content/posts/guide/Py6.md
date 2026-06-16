@@ -1,8 +1,8 @@
 ---
 title: 核心语法-类型注解
-published: 2026-05-20
+published: 2026-06-07
 description: Python类型注解
-tags: [Python类型注解,学习]
+tags: [Python类型注解]
 category: Python
 image: "api"
 draft: false
@@ -83,7 +83,7 @@ names.append(1000)
 
 #                   参数类型       返回值类型
 def circle_area_len(r: float) -> tuple[float, float]:
-    return round(3.14 * r * r), round(2 * 3.14 * r)
+    return round(3.14 * r * r,2), round(2 * 3.14 * r,2)
 
 al = circle_area_len(8.5)
 print(al)
@@ -121,7 +121,8 @@ args 这个大元组里的「每一个小元组」，固定是3个位置
 """
 
 # 参数有默认值，可以进行类型推断
-def calc_order_cost(*args: tuple[str, float, int], coupon: int = 0, score: int = 0, express: float = 0.0) -> float:
+#args 整体是一个元组 里面每一个元素又必须是长度为3的子元组
+def calc_order_cost(*args: tuple[tuple[str, float, int]], coupon: int = 0, score: int = 0, express: float = 0.0) -> float:
     """
     定义一个函数，用于根据传入的一批商品信息（商品名、价格、数量）、优惠（优惠券、积分抵扣）
     :param args: 商品信息（商品名、价格、数量）-> 传递多个元组()或列表[]，args也是一个元组，也就是元组里封装多个元组

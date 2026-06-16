@@ -1,8 +1,8 @@
 ---
 title: 核心语法-异常
-published: 2026-05-22
+published: 2026-06-08
 description: Python异常
-tags: [Python异常,学习]
+tags: [Python异常]
 category: Python
 image: "api"
 draft: false
@@ -19,8 +19,6 @@ comments: true
 
 - 保证数据、逻辑的正确性，避免程序执行混乱
 - 在开发阶段，尽量发现更多的问题，尽早解决问题，保障程序的正常执行
-
-> 异常不是坏东西，而是编写健壮程序的重要工具。
 
 ---
 

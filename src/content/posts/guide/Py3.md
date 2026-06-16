@@ -1,8 +1,8 @@
 ---
 title: 核心语法-数据容器
-published: 2026-05-17
+published: 2026-06-03
 description: Python数据容器
-tags: [Python数据容器,学习]
+tags: [Python数据容器]
 category: Python
 image: "api"
 draft: false
@@ -13,7 +13,7 @@ comments: true
 
 ## 概述
 
-`score_list = [695,,345,666,888,655,905,......]`
+`score_list = [695,345,666,888,655,905,......]`
 
 一种可以容纳多份数据的数据类型（容器），容纳的每一份数据称为1个元素。每一个元素可以是任意类型的数据，如字符串、数字、布尔等。
 
@@ -641,7 +641,7 @@ for *other, chinese, math, english in students:
     total = chinese + math + english  
     avg = total / 3  
     if avg > 90:  
-        print(f"最优秀的是{other}")
+        print(f"最优秀学生的学号是{other[0]},姓名是{other[1]}")
 ```
 
 ---
@@ -960,58 +960,6 @@ while True:
             print("非法操作！")
 ```
 
-**自己写的简化版：**
-
-```python
-print("欢迎来到KM购物系统")  
-print("1添加购物车")  
-print("2修改购物车")  
-print("3删除购物车")  
-print("4查询购物车")  
-print("5退出购物车")  
-shopping = {}  
-
-while True:  
-    user_work = input("输入你要执行的操作：")  
-    match user_work:  
-        case "1":   # 添加购物车  
-            name = input("输入商品名称：")  
-            price = float(input("输入商品价格："))  
-            num = int(input("输入商品数量："))  
-            if name in shopping:  
-                print("该商品已经存在！")  
-            else:  
-                shopping[name] = {"price": price, "num": num}  
-                print("添加成功！")  
-
-        case "2":   # 修改购物车  
-            name = input("输入要修改的商品名称：")  
-            if name not in shopping:  
-                print("你输入的商品不存在！")  
-                continue  
-            price = float(input("输入商品价格："))  
-            num = int(input("输入商品数量："))  
-            shopping[name] = {"price": price, "num": num}  
-            print("修改成功！")  
-
-        case "3":   # 删除购物车  
-            name = input("输入你要删除的商品名称：")  
-            if name not in shopping:  
-                print("你输入的商品不存在！")  
-                continue  
-            del shopping[name]  
-            print("删除成功！")  
-
-        case "4":   # 查询购物车  
-            print("\n----- 购物车商品 -----")  
-            for k, v in shopping.items():  
-                print(f"商品名称：{k}，价格：{v['price']}元，数量：{v['num']}个")  
-
-        case "5":  
-            print("欢迎下次光临！")  
-            break
-```
-
 ---
 
 ## 数据容器 — 总结
@@ -1030,7 +978,14 @@ while True:
 ## 教务系统综合案例
 
 ```python
-# 教务系统  
+# 教务系统
+"""  
+info_dict = {
+    "学生姓名1": {"语文成绩": 分数(float), "数学成绩": 分数(float), "英语成绩": 分数(float)},
+    "学生姓名2": {"语文成绩": 分数(float), "数学成绩": 分数(float), "英语成绩": 分数(float)},
+    ...
+}
+"""
 info_dict = {}  
 
 # 添加学生信息  
@@ -1115,3 +1070,106 @@ while True:
             print("退出系统")  
             break
 ```
+
+---
+
+### 1. 字符串最核心的“逆操作”：`join()`（强烈建议补充）
+笔记里详细讲了 `split()`（字符串→列表），但却漏掉了它的反向操作 `join()`（列表→字符串）。在实际开发中（如拼接 SQL、构造 URL、处理日志），`join()` 的使用频率远超 `split()`。
+
+```python
+# 补充位置：字符串常用方法表格中，紧跟在 split() 后面
+# 作用：将列表（或元组）中的多个字符串，用指定的分隔符连接成一个大的字符串
+words = ["Hello", "Python", "World"]
+result = "-".join(words)  
+print(result)  # 输出：Hello-Python-World
+
+# 经典实战：将用户输入的多个标签，用逗号拼接存储
+tags = ["Python", "AI", "Data"]
+tag_str = ",".join(tags)  # 结果："Python,AI,Data"
+```
+
+---
+
+### 2. 列表和字典的“批量操作”方法（提升代码效率）
+笔记有 `append()`（追加单个），但缺少 `extend()`（批量追加）和字典的 `update()`（合并字典）。这些在批量处理数据时能极大简化代码。
+
+```python
+# 补充位置：列表常用方法表格 / 字典常用操作表格
+
+# 1. 列表的 extend（批量追加）
+list_a = [1, 2, 3]
+list_b = [4, 5, 6]
+list_a.extend(list_b)  # 把 list_b 的所有元素挨个追加进来
+print(list_a)  # 输出：[1, 2, 3, 4, 5, 6]
+# （对比：list_a.append(list_b) 会把整个列表当做一个元素，结果是 [1,2,3,[4,5,6]]）
+
+# 2. 字典的 update（合并或覆盖）
+dict1 = {"name": "ZX", "age": 18}
+dict2 = {"age": 20, "city": "临沂"}
+dict1.update(dict2)  # 将 dict2 合并进来，键重复则覆盖
+print(dict1)  # 输出：{'name': 'ZX', 'age': 20, 'city': '临沂'}
+```
+
+---
+
+### 3. 容器通用函数 `sorted()` 与 `enumerate()`（遍历利器）
+笔记中列表排序用了 `list.sort()`（直接修改原列表），但 Python 还有一个内置函数 `sorted()`（不修改原列表，返回新列表），适用所有容器。另外，`enumerate()` 能在遍历时自动拿到“下标”，非常实用。
+
+```python
+# 补充位置：放在列表排序案例之后，或遍历字典之前
+
+# 1. sorted()：对任何可迭代对象排序，返回新列表
+tup = (5, 2, 8, 1)
+new_list = sorted(tup)  # 原元组不变，得到 [1, 2, 5, 8]
+print(new_list)
+
+# 2. enumerate()：同时获取索引和值（遍历列表或字符串时极好用）
+my_list = ["苹果", "香蕉", "橘子"]
+for index, value in enumerate(my_list):
+    print(f"第 {index+1} 个水果是 {value}")
+
+# 实战：找字符串中某个字符的所有位置
+text = "Hello World"
+for idx, char in enumerate(text):
+    if char == "o":
+        print(f"找到 'o' 在索引 {idx}")
+```
+
+---
+
+### 4. 容器性能的关键提醒（`in` 的查找效率）
+笔记中多处使用了 `in`（如购物车判断商品是否存在）。但对于**列表**和**集合/字典**，`in` 的底层效率天差地别。这是初学者极易踩的坑，补充后能体现专业度。
+
+```python
+# 补充位置：放在集合或字典章节的末尾，作为一个“注意点”框起来
+
+# 列表的 in：需要从头到尾挨个遍历（数据量大了极慢）
+# 集合/字典的 in：直接通过哈希计算查找（一瞬间完成）
+import time
+
+# 模拟一个包含 1000 万个元素的列表
+big_list = list(range(10000000))
+big_set = set(big_list)
+
+# 查找一个不存在的元素（列表很慢，集合极快）
+# （这里只做逻辑演示，实际不用跑）
+# 结论：如果只是判断“存不存在”，优先用集合或字典的 key，而不是列表！
+```
+
+---
+
+### 5. 一个极易踩坑的知识点：元组里放了列表（可变元素）
+笔记提到“元组不可变”，但有个特例容易被忽略：**如果元组里包含了一个列表，列表里的内容是可以被修改的**。这是一个非常经典的面试题和调试痛点。
+
+```python
+# 补充位置：元组章节末尾的“注意事项”
+
+t = (1, 2, [3, 4])
+# t[0] = 100  # 这句会报错（元组不可变）
+
+# 但是！修改元组内的列表元素，是允许的！
+t[2][0] = 999  
+print(t)  # 输出：(1, 2, [999, 4])  元组本身没变，但内部的可变对象变了
+```
+
+---

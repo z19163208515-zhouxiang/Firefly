@@ -1,6 +1,6 @@
 ---
 title: Renpy文本标签 段落标签 转义字符 内插数据
-published: 2026-05-26
+published: 2026-05-03
 description: Galgame
 tags: [Galgame制作,Renpy基本语法]
 category: Renpy

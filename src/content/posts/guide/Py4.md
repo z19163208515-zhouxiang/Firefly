@@ -1,8 +1,8 @@
 ---
 title: 核心语法-函数
-published: 2026-05-18
+published: 2026-06-04
 description: Python函数
-tags: [Python函数,学习]
+tags: [Python函数]
 category: Python
 image: "api"
 draft: false
@@ -490,26 +490,31 @@ def calc_date(*args, **kwargs):
     根据传入的数据，计算最大值、最小值和平均值
     :param args: 不定长位置参数，需要计算的数据
     :param kwargs: 不定长关键字参数
-        round: 保留的小数位个数
-        print: 是否打印输出
+        digit: 保留的小数位个数
+        is_print: 是否打印输出
     :return: 最小值、最大值、平均值
     """
+    # 容错：无数据直接返回提示
+    if not args:
+        raise ValueError("至少传入一个数字参数")
+
     min_date = min(args)
     max_date = max(args)
     avg_date = sum(args) / len(args)
 
-    # 如果round值不为空，保留小数位数
-    if kwargs.get('round') is not None:
-        avg_date = round(avg_date, kwargs.get('round'))
+    # 获取保留小数位数
+    digit = kwargs.get('digit')
+    if digit is not None:
+        avg_date = round(avg_date, digit)
 
-    # print=False不打印，print=True打印
-    if kwargs.get('print'):
+    # 判断是否打印
+    if kwargs.get('is_print'):
         print(f"最小值{min_date},最大值{max_date},平均值{avg_date}")
 
-    return min_date, max_date, round(avg_date, kwargs.get('round'))
+    return min_date, max_date, avg_date
 
-# 调用函数          不定长位置参数         不定长关键字参数
-print(calc_date(2, 7, 9, 10, 45, 1, 2, round=2, print=True))
+# 调用
+print(calc_date(2, 7, 9, 10, 45, 1, 2, digit=2, is_print=True))
 ```
 
 - **不定长位置参数**适用于处理数量不确定的数据
@@ -734,15 +739,16 @@ def calc_order_cost(*args, coupon=0.0, score=0.0, express=0.0):  # 设置默认�
     # 1. 计算商品总金额
     # 把args大元组里的每个商品小元组中的价格与数量相乘封装进一个列表（列表表达式）
     total_price = [goods[1] * goods[2] for goods in args]
-    # 用sum()计算总金额
-    total_cost = sum(total_price)
-
+    # 用sum()计算原始总金额
+    original_total = sum(total_price)
+    #应付金额
+    total_cost = original_total
     # 优惠券抵扣
-    if total_cost >= 5000 and coupon <= total_cost:
+    if original_total >= 5000 and coupon <= total_cost:
         total_cost -= coupon
 
     # 积分抵扣
-    if total_cost >= 5000 and score // 100 <= total_cost:  # //整除
+    if original_total >= 5000 and score // 100 <= total_cost:  # //整除
         total_cost -= score // 100
 
     # 添加运费
@@ -756,4 +762,123 @@ print(total1)
 
 total2 = calc_order_cost(("鼠标", 188, 2), ("键盘", 388, 1), ("手机", 6999, 1), coupon=10, score=4000, express=9.9)
 print(total2)
+```
+
+---
+
+### 1. 经典大坑：可变类型作为默认参数（`list`/`dict` 陷阱）
+
+笔记中提到了默认参数，但没有提这个致命陷阱。
+
+```python
+
+def add_item(item, lst=[]):  # 默认参数是一个空列表（可变对象）
+    lst.append(item)
+    return lst
+
+# 预期：每次调用都应该返回一个新列表，只包含当前添加的元素
+print(add_item("苹果"))  # 输出：['苹果']
+print(add_item("香蕉"))  # 预期：['香蕉']  实际：['苹果', '香蕉']  ❌ 大坑！
+print(add_item("橘子"))  # 实际：['苹果', '香蕉', '橘子']
+
+# 原因：默认参数在函数定义时（而非调用时）被创建，且只创建一次。
+# 每次调用共享的是同一个列表对象！
+
+# 正确写法：
+def add_item(item, lst=None):
+    if lst is None:
+        lst = []
+    lst.append(item)
+    return lst
+
+print(add_item("苹果"))  # ['苹果']
+print(add_item("香蕉"))  # ['香蕉']  正确
+```
+
+---
+
+### 2. 嵌套函数与 `nonlocal` 关键字
+笔记详细讲解了 `global`（修改全局变量），但遗漏了它的“孪生兄弟”`nonlocal`——用于在嵌套函数中修改外层函数（非全局）的局部变量。这在闭包和装饰器中极其常见。
+
+```python
+
+def outer():
+    count = 0  # 外层函数的局部变量
+
+    def inner():
+        # nonlocal count  # 如果注释掉这行，会报错：UnboundLocalError
+        count += 1
+        print(f"内部调用次数：{count}")
+
+    return inner
+
+# 调用
+func = outer()
+func()  # 输出：内部调用次数：1
+func()  # 输出：内部调用次数：2
+
+# 不用 nonlocal 会怎样？
+# 在 inner 里直接 count += 1，Python 会认为 count 是 inner 的局部变量，
+# 但赋值前未定义，所以报错。
+# nonlocal 的作用就是告诉 Python："count 不是我这个函数的局部变量，去外层函数找！"
+```
+
+---
+
+### 3. 函数调用时的参数解包（`*` 和 `**` 的“反向”用法）
+笔记中详细讲了定义函数时的 `*args`（打包成元组）和 `**kwargs`（打包成字典），但漏掉了**调用函数时**的拆包用法。这在实际开发中用于将列表/字典拆散后传入函数。
+
+```python
+
+# 1. 列表/元组拆包（*）
+def calc(a, b, c):
+    return a + b + c
+
+data_list = [10, 20, 30]
+data_tuple = (40, 50, 60)
+
+print(calc(*data_list))   # 等价于 calc(10, 20, 30) → 60
+print(calc(*data_tuple))  # 等价于 calc(40, 50, 60) → 150
+
+# 2. 字典拆包（**）
+def register(name, age, city):
+    print(f"{name}，{age}岁，来自{city}")
+
+user_info = {"name": "ZX", "age": 18, "city": "临沂"}
+register(**user_info)  # 等价于 register(name="ZX", age=18, city="临沂")
+```
+
+---
+
+### 4. 类型提示（Type Hints）—— 现代 Python 开发标配
+笔记使用了 Docstring（文档字符串）来说明参数类型，但 Python 3.5+ 支持直接在函数声明时标注类型，配合 IDE（如 VSCode/PyCharm）可以实现智能提示和静态检查，极大提升代码可维护性。
+
+```python
+
+# 导入类型注解工具，用于标注列表、元组、可空类型
+"""
+List(表示一个列表，里面装着指定类型的元素)
+Tuple(表示一个元组，里面装着指定类型的元素(可指定每个位置的类型))
+Optional(表示可选类型，即这个值可以是指定类型，也可以是 None)
+"""
+from typing import List, Tuple, Optional
+
+# 基础类型注解：参数str，返回str
+def greet(name: str) -> str:
+    return f"Hello, {name}"
+
+# 负责容器注解：参数整数列表，返回两个浮点数的元组
+def process_scores(scores: List[int]) -> Tuple[float, float]:
+    return sum(scores) / len(scores), max(scores)
+
+# Optional：参数可为字典或None，返回字典
+def find_user(user_id: int, cache: Optional[dict] = None) -> dict:
+    # 无缓存则新建空字典
+    if cache is None:
+        cache = {}
+    # 查询逻辑省略
+    return {"id": user_id}
+
+# 变量类型标注
+age: int = 18
 ```

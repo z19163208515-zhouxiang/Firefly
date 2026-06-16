@@ -1,6 +1,6 @@
 ---
 title: Renpy 人物动效 背景滤镜以及转场
-published: 2026-05-28
+published: 2026-05-05
 description: Galgame
 tags: [Galgame制作,Renpy基本语法]
 category: Renpy

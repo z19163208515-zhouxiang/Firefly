@@ -1,8 +1,8 @@
 ---
 title: 核心语法-流程控制语句
-published: 2026-05-16
+published: 2026-06-02
 description: Python流程控制语句
-tags: [Python流程控制语句,学习]
+tags: [Python流程控制语句]
 category: Python
 image: "api"
 draft: false
@@ -415,16 +415,21 @@ while True:
 ### 登录验证（限制5次机会）
 
 ```python
-# 只有五次机会
+# 只有五次机会(for循环)
 count = 5
+
 for i in range(5):
-    username = input("输入账号")
-    password = input("输入密码")
+    if count <= 0:  # 提前终止循环
+        break
+
+    username = input("输入账号: ")
+    password = input("输入密码: ")
 
     if username == "" or password == "":
         print("账号和密码不能为空")
-        count = count - 1
-        print(f"你还有{count}次机会")
+        count -= 1
+        if count > 0:
+            print(f"你还有{count}次机会")
         continue
 
     if username == "zhouxiang" and password == "070227":
@@ -432,13 +437,40 @@ for i in range(5):
         break
     else:
         print("输入错误")
-        count = count - 1
+        count -= 1
+        if count > 0:
+            print(f"你还有{count}次机会")
+#只有五次全错才提醒
+if count <= 0:
+    print("你已经输入错误五次")
+
+
+#只有五次机会(while循环)
+count = 5
+
+while count > 0:
+    username = input("输入账号: ")
+    password = input("输入密码: ")
+
+    if username == "" or password == "":
+        print("账号和密码不能为空")
+        count -= 1
+        if count > 0:
+            print(f"你还有{count}次机会")
+        continue  # 跳过后续验证，重新输入
+
+    if username == "zhouxiang" and password == "070227":
+        print("登录成功")
+        break   # 正确登录，跳出循环
+    else:
+        print("输入错误")
+        count -= 1
         if count > 0:
             print(f"你还有{count}次机会")
 
-# 只有五次全错才提示
+# 循环结束后（无论是次数用完还是break退出），判断是否因次数耗尽而锁定
 if count <= 0:
-    print("你已经输入错误五次，请30s后再试")
+    print("你已经输入错误五次")
 ```
 
 ---
@@ -496,3 +528,89 @@ for i in range(1, 1001):
         sum += i
 print(sum)
 ```
+
+---
+
+### 1. 异常处理（最强刚需）
+笔记中大量使用了 `int(input())`，但只要用户输入字母（如 `"abc"`），程序就会**直接崩溃**。在实际开发中，**永远不要相信用户的输入**。补充 `try-except` 结构会让代码健壮性飞跃。
+
+```python
+# 补充示例：带异常处理的猜数字
+import random
+random_number = random.randint(1, 100)
+
+while True:
+    user_input = input("输入数字（输入q退出）：")
+    if user_input == 'q':
+        print("退出游戏")
+        break
+    try:
+        num = int(user_input)  # 尝试转换
+    except ValueError:
+        print("输入无效，请输入一个整数！")
+        continue  # 回到循环开头，重新输入
+    
+    # 正常的比较逻辑...
+    if num > random_number:
+        print("太大了")
+    elif num < random_number:
+        print("太小了")
+    else:
+        print("恭喜猜对")
+        break
+```
+
+### 2. `for-else` 与 `while-else` 的实战精髓
+笔记提到了 `else`，但没有解释它的**核心用途**——它用于检测循环是否**完整执行**（没有被 `break` 打断）。这在“查找是否存在”的场景中极其好用。
+
+```python
+# 补充示例：判断一个数是否是质数
+num = int(input("请输入一个数字："))
+
+for i in range(2, int(num ** 0.5) + 1):
+    if num % i == 0:
+        print(f"{num} 不是质数，因为能被 {i} 整除")
+        break
+else:
+    # 注意：只有循环没有被 break 打断时，才会执行 else！
+    print(f"{num} 是质数")
+```
+
+### 3. 循环中的 `enumerate` 和 `zip`（遍历进阶）
+当需要**同时获取下标和元素**，或者**同时遍历两个列表**时，基础 `for` 循环写起来会很别扭。补充这两个内置函数，能显著提升代码的 Pythonic 程度。
+
+```python
+# 补充示例：enumerate（带索引遍历）
+msg = "Hello"
+for index, char in enumerate(msg):
+    print(f"索引 {index} 对应的字符是 {char}")
+
+# 补充示例：zip（并行遍历）
+names = ["小明", "小红"]
+scores = [95, 100]
+for name, score in zip(names, scores):
+    print(f"{name} 考了 {score} 分")
+```
+
+### 4. 死循环（`while True`）的避险策略
+笔记中用了 `while True`，但在真实项目中，如果忘记写 `break` 或者条件永远不满足，CPU 会直接拉满卡死。建议补充**退出机制**和**限次重试**的规范写法。
+
+```python
+# 补充示例：带有最大重试次数和退出指令的登录
+MAX_RETRIES = 3
+current_attempt = 0
+
+while current_attempt < MAX_RETRIES:
+    username = input("输入用户名（输入 exit 退出）：")
+    if username == "exit":
+        print("用户主动退出")
+        break
+        
+    # ... 验证逻辑
+    current_attempt += 1
+else:
+    # 循环正常结束（没break）意味着次数用完了
+    print("尝试次数过多，账号已锁定")
+```
+
+---

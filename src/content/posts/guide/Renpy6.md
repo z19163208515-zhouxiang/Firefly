@@ -1,6 +1,6 @@
 ---
 title: Renpy 界面和界面语言
-published: 2026-05-29
+published: 2026-05-06
 description: Galgame
 tags: [Galgame制作,Renpy基本语法]
 category: Renpy
